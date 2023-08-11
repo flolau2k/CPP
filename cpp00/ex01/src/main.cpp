@@ -6,7 +6,7 @@
 /*   By: flauer <flauer@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 15:24:06 by flauer            #+#    #+#             */
-/*   Updated: 2023/08/11 16:41:41 by flauer           ###   ########.fr       */
+/*   Updated: 2023/08/11 17:13:54 by flauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,14 @@ int main(void) {
   while (true) {
     std::cout << "awaiting commands ..." << std::endl;
     std::cin >> buf;
-    std::cout << "your input: " << buf << std::endl;
+    if (buf == "ADD")
+		pb.AddContact();
+	else if (buf == "SEARCH")
+		pb.SearchContact();
+	else if (buf == "EXIT")
+		break;
+	else
+		std::cout << "invalid input!" << std::endl;
   }
+  return (0);
 }
