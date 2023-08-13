@@ -6,7 +6,7 @@
 /*   By: flauer <flauer@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 14:16:56 by flauer            #+#    #+#             */
-/*   Updated: 2023/08/11 17:11:59 by flauer           ###   ########.fr       */
+/*   Updated: 2023/08/13 14:28:22 by flauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,16 @@ Contact::~Contact() {}
 
 void Contact::fillContact()
 {
-	this->firstname = get_input("First Name: ");
-	this->lastname = get_input("Last Name: ");
-	this->nickname = get_input("Nickname: ");
-	this->phone_number = get_input("Phone Number: ");
-	this->darkest_secret = get_input("Darkest Secret: ");
+	firstname = get_input("First Name: ");
+	lastname = get_input("Last Name: ");
+	nickname = get_input("Nickname: ");
+	phone_number = get_input("Phone Number: ");
+	darkest_secret = get_input("Darkest Secret: ");
 	return ;
 }
 
 void Contact::printContact()
 {
-	std::cout << "printing contact: " << this->firstname << std::endl;
+	std::cout << "printing contact: " << firstname << std::endl;
 	return ;
 }

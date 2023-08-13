@@ -6,7 +6,7 @@
 /*   By: flauer <flauer@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 14:16:52 by flauer            #+#    #+#             */
-/*   Updated: 2023/08/11 17:10:54 by flauer           ###   ########.fr       */
+/*   Updated: 2023/08/13 14:01:44 by flauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ private:
 	std::string nickname;
 	std::string phone_number;
 	std::string darkest_secret;
-
 
 public:
 	Contact();
