@@ -6,7 +6,7 @@
 /*   By: flauer <flauer@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 14:16:55 by flauer            #+#    #+#             */
-/*   Updated: 2023/08/14 11:18:17 by flauer           ###   ########.fr       */
+/*   Updated: 2023/08/14 13:35:43 by flauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	trim_entry(std::string &s)
 	return ;
 }
 
-static void print_element(const std::string &e)
+static void	print_element(const std::string &e)
 {
 	std::cout << "|";
 	for (size_t i = e.length(); i < 10; i++)
@@ -31,11 +31,13 @@ static void print_element(const std::string &e)
 	return ;
 }
 
-static void print_line(Contact &c, int id)
+static void	print_line(Contact &c, int id)
 {
-	std::string idstr, fn, ln, nick;
+	std::string 		idstr, fn, ln, nick;
+	std::stringstream	sstream;
 
-	idstr = std::to_string(id);
+	sstream << id;
+	idstr = sstream.str();
 	fn = c.get_firstname();
 	ln = c.get_lastname();
 	nick = c.get_nickname();
@@ -68,8 +70,9 @@ void PhoneBook::AddContact() {
 
 void PhoneBook::SearchContact()
 {
-	std::string	buf;
-	int			id;
+	std::string			buf;
+	int					id;
+	std::stringstream	sstr;
 
 	print_element("IDX");
 	print_element("First");
@@ -78,17 +81,18 @@ void PhoneBook::SearchContact()
 	std::cout << "|" << std::endl;
 	for (int i = 0; i < MAX_CONTACTS; i++)
 		print_line(contacts[i], i);
-	buf = Contact::get_input("Print ID: ");
-	try
+	while (true)
 	{
-		id = std::stoi(buf);
-		if (id < 0 || id > MAX_CONTACTS - 1)
-			throw std::invalid_argument("Index is out of Range!");
-		contacts[id].printContact();
-	}
-	catch(const std::invalid_argument& ia)
-	{
-		std::cerr << "Invalid Argument: " << ia.what() << std::endl;
+		buf = get_input("Print ID (or exit with EXIT): ");
+		if (buf.length() == 1 && buf[0] >= '0' && buf[0] <= '7')
+		{
+			id = buf[0] - '0';
+			contacts[id].printContact();
+		}
+		else if (buf == "EXIT")
+			break ;
+		else
+			std::cout << "Index out of range or invalid input!" << std::endl;
 	}
 	return ;
 }

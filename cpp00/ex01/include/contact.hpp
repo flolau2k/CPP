@@ -6,7 +6,7 @@
 /*   By: flauer <flauer@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 14:16:52 by flauer            #+#    #+#             */
-/*   Updated: 2023/08/14 11:02:48 by flauer           ###   ########.fr       */
+/*   Updated: 2023/08/14 13:26:11 by flauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ public:
 	std::string get_nickname();
 	std::string get_phone();
 	std::string get_secret();
-	static std::string get_input(const std::string prompt = "input: ");
 };
+
+std::string get_input(const std::string prompt = "input: ");
 
 #endif

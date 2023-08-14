@@ -6,20 +6,20 @@
 /*   By: flauer <flauer@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 15:24:06 by flauer            #+#    #+#             */
-/*   Updated: 2023/08/14 10:49:20 by flauer           ###   ########.fr       */
+/*   Updated: 2023/08/14 12:13:20 by flauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "phonebook.hpp"
 
-static void print_help()
-{
-	std::cout << "Available Commands are: " << std::endl
-		<< "ADD: Adds a new contact to the list. " << std::endl
-		<< "SEARCH: List the contacts in the List." << std::endl
-		<< "EXIT: Quit the program, all data will be lost." << std::endl
-		<< "HELP: Display this help message." << std::endl;
-}
+// static void print_help()
+// {
+// 	std::cout << "Available Commands are: " << std::endl
+// 		<< "ADD: Adds a new contact to the list. " << std::endl
+// 		<< "SEARCH: List the contacts in the List." << std::endl
+// 		<< "EXIT: Quit the program, all data will be lost." << std::endl
+// 		<< "HELP: Display this help message." << std::endl;
+// }
 
 int main(void) {
   PhoneBook pb;
@@ -35,8 +35,8 @@ int main(void) {
 		pb.SearchContact();
 	else if (buf == "EXIT")
 		break;
-	else
-		print_help();
+	// else
+	// 	print_help();
   }
   return (0);
 }

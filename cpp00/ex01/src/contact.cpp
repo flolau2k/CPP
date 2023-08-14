@@ -6,13 +6,13 @@
 /*   By: flauer <flauer@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 14:16:56 by flauer            #+#    #+#             */
-/*   Updated: 2023/08/14 11:07:24 by flauer           ###   ########.fr       */
+/*   Updated: 2023/08/14 13:26:35 by flauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "contact.hpp"
 
-std::string Contact::get_input(const std::string prompt)
+std::string get_input(const std::string prompt)
 {
 	std::string buf;
 	std::cout << prompt;
@@ -20,9 +20,7 @@ std::string Contact::get_input(const std::string prompt)
 	return (buf);
 }
 
-Contact::Contact() {
-  // std::cout << "Contact constructor called!" << std::endl;
-}
+Contact::Contact() {}
 
 Contact::~Contact() {}
 
