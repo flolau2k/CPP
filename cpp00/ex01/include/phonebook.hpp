@@ -6,7 +6,7 @@
 /*   By: flauer <flauer@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 14:16:50 by flauer            #+#    #+#             */
-/*   Updated: 2023/08/11 17:09:29 by flauer           ###   ########.fr       */
+/*   Updated: 2023/08/14 10:20:55 by flauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 #include "contact.hpp"
 #include <iostream>
+#include <string>
 
 class PhoneBook {
 private:

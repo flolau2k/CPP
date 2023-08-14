@@ -6,7 +6,7 @@
 #    By: flauer <flauer@student.42heilbronn.de>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/11 09:51:54 by flauer            #+#    #+#              #
-#    Updated: 2023/08/11 15:30:47 by flauer           ###   ########.fr        #
+#    Updated: 2023/08/14 10:26:09 by flauer           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME =		phonebook
 CC =		c++
 CFLAGS =	-Wall -Wextra -Werror -std=c++98
 
-INCLUDES =	-Iinclude -pthread
+INCLUDES =	-Iinclude
 
 OBJDIR =	obj
 SRCDIR =	src
