@@ -6,7 +6,7 @@
 #    By: flauer <flauer@student.42heilbronn.de>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/11 09:51:54 by flauer            #+#    #+#              #
-#    Updated: 2023/08/13 12:48:24 by flauer           ###   ########.fr        #
+#    Updated: 2023/08/14 13:43:06 by flauer           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ $(NAME): $(SRC)
 
 clean:
 	/bin/rm -rf $(NAME)
+	/bin/rm -rf $(NAME).dSYM
 
 fclean: clean
 	/bin/rm -rf $(NAME)

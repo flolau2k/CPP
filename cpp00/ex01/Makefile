@@ -6,7 +6,7 @@
 #    By: flauer <flauer@student.42heilbronn.de>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/11 09:51:54 by flauer            #+#    #+#              #
-#    Updated: 2023/08/14 10:26:09 by flauer           ###   ########.fr        #
+#    Updated: 2023/08/14 13:42:44 by flauer           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ $(OBJDIR):
 
 clean:
 	/bin/rm -rf $(OBJDIR)
+	/bin/rm -rf $(NAME).dSYM
 
 fclean: clean
 	/bin/rm -rf $(NAME)
