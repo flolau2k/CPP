@@ -9,3 +9,4 @@
 log.txt
 orig.log
 *_out
+*.replace
