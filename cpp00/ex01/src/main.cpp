@@ -6,7 +6,7 @@
 /*   By: flauer <flauer@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 15:24:06 by flauer            #+#    #+#             */
-/*   Updated: 2023/08/14 12:13:20 by flauer           ###   ########.fr       */
+/*   Updated: 2023/08/17 13:41:16 by flauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int main(void) {
 
   std::cout << "Welcome to this wonderful PhoneBook!" << std::endl;
   while (true) {
+	if (std::cin.eof()) break;
     std::cout << "> ";
     std::getline(std::cin, buf);
     if (buf == "ADD")
