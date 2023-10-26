@@ -1,0 +1,8 @@
+.vscode
+megaphone
+*.o
+*/obj/
+phonebook
+account_test
+log.txt
+orig.log

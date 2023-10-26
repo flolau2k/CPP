@@ -6,7 +6,7 @@
 /*   By: flauer <flauer@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 14:16:55 by flauer            #+#    #+#             */
-/*   Updated: 2023/08/14 13:35:43 by flauer           ###   ########.fr       */
+/*   Updated: 2023/10/26 10:08:59 by flauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,16 +83,14 @@ void PhoneBook::SearchContact()
 		print_line(contacts[i], i);
 	while (true)
 	{
-		buf = get_input("Print ID (or exit with EXIT): ");
+		buf = get_input("Print ID [0 - 7] (or exit with any other input): ");
 		if (buf.length() == 1 && buf[0] >= '0' && buf[0] <= '7')
 		{
 			id = buf[0] - '0';
 			contacts[id].printContact();
 		}
-		else if (buf == "EXIT")
-			break ;
 		else
-			std::cout << "Index out of range or invalid input!" << std::endl;
+			break ;
 	}
 	return ;
 }
