@@ -6,7 +6,7 @@
 /*   By: flauer <flauer@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 17:44:53 by flauer            #+#    #+#             */
-/*   Updated: 2023/08/14 18:02:19 by flauer           ###   ########.fr       */
+/*   Updated: 2023/11/21 17:34:07 by flauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class Weapon {
 		Weapon(std::string type);
 		~Weapon();
 
-		std::string getType(void) const;
+		const std::string& getType(void) const;
 		void setType(std::string type);
 };
 

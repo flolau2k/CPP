@@ -6,7 +6,7 @@
 /*   By: flauer <flauer@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 17:42:22 by flauer            #+#    #+#             */
-/*   Updated: 2023/08/14 18:02:30 by flauer           ###   ########.fr       */
+/*   Updated: 2023/11/21 17:34:10 by flauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ Weapon::Weapon(std::string type)
 
 Weapon::~Weapon(){}
 
-std::string	Weapon::getType(void) const
+const std::string&	Weapon::getType(void) const
 {
 	return _type;
 }
