@@ -6,3 +6,4 @@ phonebook
 account_test
 log.txt
 orig.log
+*.dSYM
