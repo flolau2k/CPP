@@ -6,11 +6,13 @@
 /*   By: flauer <flauer@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 13:48:40 by flauer            #+#    #+#             */
-/*   Updated: 2023/08/14 15:21:31 by flauer           ###   ########.fr       */
+/*   Updated: 2023/11/21 11:09:39 by flauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Account.hpp"
+#include <iostream>
+#include <ctime>
 
 int	Account::_nbAccounts;
 int	Account::_totalAmount;
