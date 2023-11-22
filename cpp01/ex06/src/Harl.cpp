@@ -6,7 +6,7 @@
 /*   By: flauer <flauer@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 09:52:59 by flauer            #+#    #+#             */
-/*   Updated: 2023/08/18 11:01:07 by flauer           ###   ########.fr       */
+/*   Updated: 2023/11/22 11:30:11 by flauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,22 +31,22 @@ void Harl::complain(std::string level)
 	}
 }
 
-void Harl::debug(void)
+void Harl::debug(void) const
 {
 	std::cout << DEBUG_S << std::endl;
 }
 
-void Harl::info(void)
+void Harl::info(void) const
 {
 	std::cout << INFO_S << std::endl;
 }
 
-void Harl::warning(void)
+void Harl::warning(void) const
 {
 	std::cout << WARNING_S << std::endl;
 }
 
-void Harl::error(void)
+void Harl::error(void) const
 {
 	std::cout << ERROR_S << std::endl;
 }

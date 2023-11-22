@@ -6,7 +6,7 @@
 /*   By: flauer <flauer@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 09:52:46 by flauer            #+#    #+#             */
-/*   Updated: 2023/08/18 11:13:18 by flauer           ###   ########.fr       */
+/*   Updated: 2023/11/22 11:44:49 by flauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 static void	print_usage(void)
 {
 	std::cerr << "This program takes only one argument. " << std::endl
-		<< "This Argument may be one of the following:" << std::endl
-		<< "\"DEBUG\", \"INFO\", \"WARNING\", \"ERROR\"" << std::endl;
+		<< "This Argument specifies the minimum loglevel to display." << std::endl;
 }
 
 static bool	check_args(int argc, char **argv, Harl::Level &l)
@@ -33,7 +32,7 @@ static bool	check_args(int argc, char **argv, Harl::Level &l)
 	else if (!arg.compare("ERROR"))
 		l = Harl::ERROR;
 	else
-		return (false);
+		l = Harl::INSIGNIFICANT;
 	return (true);
 }
 
@@ -49,12 +48,18 @@ int main(int argc, char **argv)
 	{
 		case Harl::DEBUG:
 			h.complain("debug");
+			/* fall through */
 		case Harl::INFO:
 			h.complain("info");
+			/* fall through */
 		case Harl::WARNING:
 			h.complain("warning");
+			/* fall through */
 		case Harl::ERROR:
 			h.complain("error");
+			break;
+		case Harl::INSIGNIFICANT:
+			std::cout << INSIGNIFICANT_S << std::endl;
 	}
 	return (EXIT_SUCCESS);
 }

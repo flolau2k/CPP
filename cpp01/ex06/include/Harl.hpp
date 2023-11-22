@@ -6,7 +6,7 @@
 /*   By: flauer <flauer@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 09:53:02 by flauer            #+#    #+#             */
-/*   Updated: 2023/08/18 11:13:00 by flauer           ###   ########.fr       */
+/*   Updated: 2023/11/22 11:43:25 by flauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +20,24 @@
 # define INFO_S "INFO: Going to do the Laundry"
 # define WARNING_S "WARNING: Found a penny in a Pocket!"
 # define ERROR_S "ERROR: a brick found its way into the machine and it exploded"
+# define INSIGNIFICANT_S "[ Probably complaining about insignificant problems ]"
 
 
 class Harl {
 	private:
 		const static std::string levels[4];
-		void (Harl::*functions[4])(void);
+		void (Harl::*functions[4])(void) const;
 		
-		void debug(void);
-		void info(void);
-		void warning(void);
-		void error(void);
+		void debug(void) const;
+		void info(void) const;
+		void warning(void) const;
+		void error(void) const;
 
 	public:
 		Harl();
 		~Harl();
 		void complain(std::string level);
-		enum Level {DEBUG, INFO, WARNING, ERROR}; 
+		enum Level {DEBUG, INFO, WARNING, ERROR, INSIGNIFICANT}; 
 };
 
 #endif
