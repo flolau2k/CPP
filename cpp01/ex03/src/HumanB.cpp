@@ -6,11 +6,12 @@
 /*   By: flauer <flauer@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 17:42:02 by flauer            #+#    #+#             */
-/*   Updated: 2023/08/14 18:26:04 by flauer           ###   ########.fr       */
+/*   Updated: 2023/11/22 09:48:45 by flauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/HumanB.hpp"
+#include <iostream>
 
 HumanB::HumanB(std::string name) 
 {

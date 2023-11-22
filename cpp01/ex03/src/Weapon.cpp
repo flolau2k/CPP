@@ -6,13 +6,11 @@
 /*   By: flauer <flauer@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 17:42:22 by flauer            #+#    #+#             */
-/*   Updated: 2023/11/21 17:34:10 by flauer           ###   ########.fr       */
+/*   Updated: 2023/11/22 09:52:59 by flauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/Weapon.hpp"
-
-Weapon::Weapon(){}
 
 Weapon::Weapon(std::string type)
 {

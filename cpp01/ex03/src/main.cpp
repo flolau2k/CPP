@@ -6,7 +6,7 @@
 /*   By: flauer <flauer@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 17:42:42 by flauer            #+#    #+#             */
-/*   Updated: 2023/11/21 17:33:35 by flauer           ###   ########.fr       */
+/*   Updated: 2023/11/22 09:52:23 by flauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,6 @@ int main(void)
 {
 	{
 		Weapon club = Weapon("crude spiked club");
-
-		std::cout << "type: " << club.getType() << std::endl;
-		const std::string& ty = club.getType();
-		ty = "adsflkja";
-		std::cout << "type: " << club.getType() << std::endl;
-		std::cout << "ty: " << ty << std::endl;
-
 
 		HumanA bob("Bob", club);
 		bob.attack();
