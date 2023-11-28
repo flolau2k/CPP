@@ -6,11 +6,11 @@
 /*   By: flauer <flauer@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 11:20:21 by flauer            #+#    #+#             */
-/*   Updated: 2023/08/18 16:23:07 by flauer           ###   ########.fr       */
+/*   Updated: 2023/11/28 11:18:14 by flauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/Fixed.hpp"
+#include "Fixed.hpp"
 
 Fixed::Fixed() 
 {

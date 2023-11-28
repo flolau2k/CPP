@@ -6,11 +6,11 @@
 /*   By: flauer <flauer@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 13:36:36 by flauer            #+#    #+#             */
-/*   Updated: 2023/10/26 15:47:03 by flauer           ###   ########.fr       */
+/*   Updated: 2023/11/28 11:18:31 by flauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/Fixed.hpp"
+#include "Fixed.hpp"
 
 Fixed::Fixed() {
   std::cout << DEFCONST << std::endl;

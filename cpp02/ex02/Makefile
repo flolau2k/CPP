@@ -6,11 +6,11 @@
 #    By: flauer <flauer@student.42heilbronn.de>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/18 11:18:23 by flauer            #+#    #+#              #
-#    Updated: 2023/11/28 11:17:38 by flauer           ###   ########.fr        #
+#    Updated: 2023/11/28 11:19:06 by flauer           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME =		ex00_out
+NAME =		ex02_out
 
 CC =		c++
 CFLAGS =	-Wall -Wextra -Werror -std=c++98

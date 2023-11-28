@@ -6,7 +6,7 @@
 #    By: flauer <flauer@student.42heilbronn.de>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/18 11:18:23 by flauer            #+#    #+#              #
-#    Updated: 2023/08/18 16:25:09 by flauer           ###   ########.fr        #
+#    Updated: 2023/11/28 11:18:27 by flauer           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,15 +18,13 @@ CFLAGS =	-Wall -Wextra -Werror -std=c++98
 INCLUDES =	-Iinclude
 
 OBJDIR =	obj
-SRCDIR =	src
-INCDIR =	include
 
 FILES =		main.cpp Fixed.cpp
 HEADER_F =	Fixed.hpp
 
-SRC =		$(addprefix $(SRCDIR)/, $(FILES))
+SRC =		$(FILES)
 OBJ =		$(addprefix $(OBJDIR)/, $(FILES:%.cpp=%.o))
-HEADERS =	$(addprefix $(INCDIR)/, $(HEADER_F))
+HEADERS =	$(HEADER_F)
 
 all: $(NAME)
 
@@ -34,7 +32,7 @@ $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) $(INCLUDES) -o $(NAME)
 	@echo "built $(NAME)"
 
-$(OBJDIR)/%.o: $(SRCDIR)/%.cpp $(HEADERS) | $(OBJDIR)
+$(OBJDIR)/%.o: %.cpp $(HEADERS) | $(OBJDIR)
 	$(CC) $(CFLAGS) $(INCLUDES) -c -o $@ $<
 
 $(OBJDIR):
