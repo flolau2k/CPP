@@ -6,7 +6,7 @@
 /*   By: flauer <flauer@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 13:36:36 by flauer            #+#    #+#             */
-/*   Updated: 2023/11/28 11:19:10 by flauer           ###   ########.fr       */
+/*   Updated: 2023/11/29 15:19:51 by flauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,19 +42,62 @@ Fixed &Fixed::operator=(const Fixed &F) {
   return *this;
 }
 
-bool Fixed::operator>(const Fixed &F) {
-	if (this->_store > F._store)
-		return true;
-	return false;
+bool Fixed::operator<(const Fixed &F) const {
+	return this->_store < F.getRawBits();
+}
+
+bool Fixed::operator>(const Fixed &F) const {
+	return (F < *this);
+}
+
+bool Fixed::operator<=(const Fixed &F) const {
+	return !(*this > F);
+}
+
+bool Fixed::operator>=(const Fixed &F) const {
+	return !(*this < F);
+}
+
+bool Fixed::operator==(const Fixed &F) const {
+	return this->_store == F.getRawBits();
+}
+
+bool Fixed::operator!=(const Fixed &F) const {
+	return !(*this == F);
+}
+
+Fixed Fixed::operator+(const Fixed &F) {
+	Fixed ret;
+	ret.setRawBits(this->getRawBits() + F.getRawBits());
+	return ret;
+}
+
+Fixed Fixed::operator-(const Fixed &F) {
+	Fixed ret;
+	ret.setRawBits(this->getRawBits() - F.getRawBits());
+	return ret;
+}
+
+Fixed Fixed::operator*(const Fixed &F) {
+	Fixed ret;
+	int64_t tmp = static_cast<int64_t>(this->getRawBits())
+		* static_cast<int64_t>(F.getRawBits());
+	ret.setRawBits(static_cast<int>(tmp >> this->fract));
+	return ret;
+}
+
+Fixed Fixed::operator/(const Fixed &F) {
+	Fixed ret;
+	
 }
 
 int Fixed::getRawBits(void) const {
-  std::cout << GETRAWC << std::endl;
+  // std::cout << GETRAWC << std::endl;
   return _store;
 }
 
 void Fixed::setRawBits(const int raw) {
-  std::cout << SETRAWC << std::endl;
+  // std::cout << SETRAWC << std::endl;
   _store = raw;
 }
 

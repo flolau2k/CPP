@@ -6,7 +6,7 @@
 /*   By: flauer <flauer@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 11:20:16 by flauer            #+#    #+#             */
-/*   Updated: 2023/10/26 16:04:31 by flauer           ###   ########.fr       */
+/*   Updated: 2023/11/29 14:37:41 by flauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 #define COPYASSIGN "Copy assignment operator called"
 #define DESTRUCT "Destructor called"
 #define DEFCONST "Default constructor called"
-#define GETRAWC "getRawBits member function called"
-#define SETRAWC "setRawBits member function called"
 #define COPYCONST "Copy constructor called"
 #define INTCONST "Int constructor called"
 #define FLOATCONST "Float constructor called"
@@ -34,12 +32,18 @@ public:
   ~Fixed();
 
   Fixed &operator=(const Fixed &F);
-	bool operator>(const Fixed &F);
-	bool operator<(const Fixed &F);
-	bool operator>=(const Fixed &F);
-	bool operator<=(const Fixed &F);
-	bool operator==(const Fixed &F);
-	bool operator!=(const Fixed &F);
+	bool operator>(const Fixed &F) const;
+	bool operator<(const Fixed &F) const;
+	bool operator>=(const Fixed &F) const;
+	bool operator<=(const Fixed &F) const;
+	bool operator==(const Fixed &F) const;
+	bool operator!=(const Fixed &F) const;
+	// Fixed operator+() const;
+	// Fixed operator-() const;
+	Fixed operator+(const Fixed &F);
+	Fixed operator-(const Fixed &F);
+	Fixed operator*(const Fixed &F);
+	Fixed operator/(const Fixed &F);
 
   int getRawBits(void) const;
   void setRawBits(const int raw);
