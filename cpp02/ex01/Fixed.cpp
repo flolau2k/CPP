@@ -6,11 +6,12 @@
 /*   By: flauer <flauer@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 13:36:36 by flauer            #+#    #+#             */
-/*   Updated: 2023/11/28 11:18:31 by flauer           ###   ########.fr       */
+/*   Updated: 2023/11/29 11:19:57 by flauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
+#include <cmath>
 
 Fixed::Fixed() {
   std::cout << DEFCONST << std::endl;
@@ -43,12 +44,10 @@ Fixed &Fixed::operator=(const Fixed &F) {
 }
 
 int Fixed::getRawBits(void) const {
-  std::cout << GETRAWC << std::endl;
   return _store;
 }
 
 void Fixed::setRawBits(const int raw) {
-  std::cout << SETRAWC << std::endl;
   _store = raw;
 }
 
@@ -56,13 +55,9 @@ void Fixed::setRawBits(const int raw) {
 /// devide it by the number fractional bits.
 /// @param void
 /// @return floating point representation of Fixed
-float Fixed::toFloat(void) const {
-	return float(_store) / (1 << fract); 
-}
+float Fixed::toFloat(void) const { return float(_store) / (1 << fract); }
 
-int Fixed::toInt(void) const {
-	return roundf(this->toFloat()); 
-}
+int Fixed::toInt(void) const { return roundf(this->toFloat()); }
 
 std::ostream &operator<<(std::ostream &out, const Fixed &F) {
   return out << F.toFloat();

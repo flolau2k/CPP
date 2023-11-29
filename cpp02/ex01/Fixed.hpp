@@ -6,14 +6,13 @@
 /*   By: flauer <flauer@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 11:20:16 by flauer            #+#    #+#             */
-/*   Updated: 2023/10/26 13:36:46 by flauer           ###   ########.fr       */
+/*   Updated: 2023/11/29 11:17:03 by flauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FIXED_HPP
 #define FIXED_HPP
 
-#include <cmath>
 #include <iostream>
 
 #define COPYASSIGN "Copy assignment operator called"
@@ -31,9 +30,8 @@ public:
   Fixed(const int val);
   Fixed(const float val);
   Fixed(const Fixed &F);
-  ~Fixed();
-
   Fixed &operator=(const Fixed &F);
+  ~Fixed();
 
   int getRawBits(void) const;
   void setRawBits(const int raw);
