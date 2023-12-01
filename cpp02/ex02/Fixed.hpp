@@ -1,14 +1,16 @@
-/* ************************************************************************** */
+/* **************************************************************************
+ */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Fixed.hpp                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: flauer <flauer@student.42heilbronn.de>     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/18 11:20:16 by flauer            #+#    #+#             */
-/*   Updated: 2023/11/29 14:37:41 by flauer           ###   ########.fr       */
+/*                                                        :::      :::::::: */
+/*   Fixed.hpp                                          :+:      :+:    :+: */
+/*                                                    +:+ +:+         +:+ */
+/*   By: flauer <flauer@student.42heilbronn.de>     +#+  +:+       +#+ */
+/*                                                +#+#+#+#+#+   +#+ */
+/*   Created: 2023/08/18 11:20:16 by flauer            #+#    #+# */
+/*   Updated: 2023/12/01 08:42:55 by flauer           ###   ########.fr */
 /*                                                                            */
-/* ************************************************************************** */
+/* **************************************************************************
+ */
 
 #ifndef FIXED_HPP
 #define FIXED_HPP
@@ -32,26 +34,32 @@ public:
   ~Fixed();
 
   Fixed &operator=(const Fixed &F);
-	bool operator>(const Fixed &F) const;
-	bool operator<(const Fixed &F) const;
-	bool operator>=(const Fixed &F) const;
-	bool operator<=(const Fixed &F) const;
-	bool operator==(const Fixed &F) const;
-	bool operator!=(const Fixed &F) const;
-	// Fixed operator+() const;
-	// Fixed operator-() const;
-	Fixed operator+(const Fixed &F);
-	Fixed operator-(const Fixed &F);
-	Fixed operator*(const Fixed &F);
-	Fixed operator/(const Fixed &F);
+  bool operator>(const Fixed &F) const;
+  bool operator<(const Fixed &F) const;
+  bool operator>=(const Fixed &F) const;
+  bool operator<=(const Fixed &F) const;
+  bool operator==(const Fixed &F) const;
+  bool operator!=(const Fixed &F) const;
+  Fixed operator+(const Fixed &F);
+  Fixed operator-(const Fixed &F);
+  Fixed operator*(const Fixed &F);
+  Fixed operator/(const Fixed &F);
+  Fixed &operator++();
+  Fixed &operator--();
+  Fixed operator++(int);
+  Fixed operator--(int);
 
-  int getRawBits(void) const;
-  void setRawBits(const int raw);
+  static Fixed &min(Fixed &a, Fixed &b);
+  static const Fixed &min(const Fixed &a, const Fixed &b);
+  static Fixed &max(Fixed &a, Fixed &b);
+  static const Fixed &max(const Fixed &a, const Fixed &b);
+  int32_t getRawBits(void) const;
+  void setRawBits(const int32_t raw);
   float toFloat(void) const;
   int toInt(void) const;
 
 private:
-  int _store;
+  int32_t _store;
   static const int fract = 8;
 };
 
