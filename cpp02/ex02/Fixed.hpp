@@ -35,14 +35,15 @@ public:
   Fixed operator++(int);
   Fixed operator--(int);
 
-  static Fixed &min(Fixed &a, Fixed &b);
-  static const Fixed &min(const Fixed &a, const Fixed &b);
-  static Fixed &max(Fixed &a, Fixed &b);
-  static const Fixed &max(const Fixed &a, const Fixed &b);
   int32_t getRawBits(void) const;
   void setRawBits(const int32_t raw);
   float toFloat(void) const;
   int toInt(void) const;
+
+  static Fixed &min(Fixed &a, Fixed &b);
+  static const Fixed &min(const Fixed &a, const Fixed &b);
+  static Fixed &max(Fixed &a, Fixed &b);
+  static const Fixed &max(const Fixed &a, const Fixed &b);
 
 private:
   int32_t _store;

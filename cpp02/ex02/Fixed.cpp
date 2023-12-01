@@ -12,13 +12,13 @@ Fixed::~Fixed() {}
 
 Fixed &Fixed::operator=(const Fixed &F) {
   if (this != &F) {
-    this->_store = F.getRawBits();
+    _store = F._store;
   }
   return *this;
 }
 
 bool Fixed::operator<(const Fixed &F) const {
-  return this->_store < F.getRawBits();
+  return _store < F._store;
 }
 
 bool Fixed::operator>(const Fixed &F) const { return (F < *this); }
@@ -28,34 +28,34 @@ bool Fixed::operator<=(const Fixed &F) const { return !(*this > F); }
 bool Fixed::operator>=(const Fixed &F) const { return !(*this < F); }
 
 bool Fixed::operator==(const Fixed &F) const {
-  return this->_store == F.getRawBits();
+  return _store == F.getRawBits();
 }
 
 bool Fixed::operator!=(const Fixed &F) const { return !(*this == F); }
 
 Fixed Fixed::operator+(const Fixed &F) {
   Fixed ret;
-  ret.setRawBits(this->getRawBits() + F.getRawBits());
+  ret.setRawBits(getRawBits() + F.getRawBits());
   return ret;
 }
 
 Fixed Fixed::operator-(const Fixed &F) {
   Fixed ret;
-  ret.setRawBits(this->getRawBits() - F.getRawBits());
+  ret.setRawBits(getRawBits() - F.getRawBits());
   return ret;
 }
 
 Fixed Fixed::operator*(const Fixed &F) {
   Fixed ret;
-  int64_t tmp = static_cast<int64_t>(this->getRawBits()) *
+  int64_t tmp = static_cast<int64_t>(getRawBits()) *
                 static_cast<int64_t>(F.getRawBits());
-  ret.setRawBits(static_cast<int32_t>(tmp >> this->fract));
+  ret.setRawBits(static_cast<int32_t>(tmp >> fract));
   return ret;
 }
 
 Fixed Fixed::operator/(const Fixed &F) {
   Fixed ret;
-  int64_t tmp = static_cast<int64_t>(this->getRawBits()) << this->fract;
+  int64_t tmp = static_cast<int64_t>(getRawBits()) << fract;
   tmp /= F.getRawBits();
   ret.setRawBits(static_cast<int32_t>(tmp));
   return ret;
@@ -109,7 +109,7 @@ void Fixed::setRawBits(const int32_t raw) { _store = raw; }
 
 float Fixed::toFloat(void) const { return float(_store) / (1 << fract); }
 
-int Fixed::toInt(void) const { return roundf(this->toFloat()); }
+int Fixed::toInt(void) const { return getRawBits() >> fract; }
 
 std::ostream &operator<<(std::ostream &out, const Fixed &F) {
   return out << F.toFloat();
