@@ -2,6 +2,7 @@
 #define FIXED_HPP
 
 #include <iostream>
+#include <bits/stdint-intn.h>
 
 #define COPYASSIGN "Copy assignment operator called"
 #define DESTRUCT "Destructor called"
@@ -21,13 +22,13 @@ public:
   Fixed &operator=(const Fixed &F);
   ~Fixed();
 
-  int getRawBits(void) const;
-  void setRawBits(const int raw);
+  int32_t getRawBits(void) const;
+  void setRawBits(const int32_t raw);
   float toFloat(void) const;
   int toInt(void) const;
 
 private:
-  int _store;
+  int32_t _store;
   static const int fract = 8;
 };
 

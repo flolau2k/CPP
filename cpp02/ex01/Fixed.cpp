@@ -26,7 +26,7 @@ Fixed::~Fixed() { std::cout << DESTRUCT << std::endl; }
 Fixed &Fixed::operator=(const Fixed &F) {
   std::cout << COPYASSIGN << std::endl;
   if (this != &F) {
-    this->_store = F.getRawBits();
+    _store = F.getRawBits();
   }
   return *this;
 }
@@ -45,7 +45,7 @@ void Fixed::setRawBits(const int raw) {
 /// @return floating point representation of Fixed
 float Fixed::toFloat(void) const { return float(_store) / (1 << fract); }
 
-int Fixed::toInt(void) const { return roundf(this->toFloat()); }
+int Fixed::toInt(void) const { return getRawBits() >> fract; }
 
 std::ostream &operator<<(std::ostream &out, const Fixed &F) {
   return out << F.toFloat();
