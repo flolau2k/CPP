@@ -3,5 +3,6 @@
 		"iostream": "cpp",
 		"cmath": "cpp"
 	},
-	"C_Cpp.clang_format_fallbackStyle": "LLVM"
+	"C_Cpp.clang_format_fallbackStyle": "LLVM",
+	"editor.tabSize": 2
 }
