@@ -23,6 +23,7 @@
     ],
     "description": "orthodox canonical class template",
   },
+
   "Orthodox Canonical Src": {
     "scope": "cpp",
     "prefix": "ortoc",
@@ -35,6 +36,6 @@
       "",
       "$1 &$1::operator=(const $1 &$2) {}",
     ],
-    "description": ""
+    "description": "orthodox canonical class implementation"
   }
 }
