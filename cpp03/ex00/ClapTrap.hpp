@@ -21,9 +21,10 @@ public:
   void takeDamage(unsigned int amount);
   void beRepaired(unsigned int amount);
 
-  void setName(const std::string &name);
+  void printStatus();
 
 private:
+  static int  count;
   int _hp;
   int _ep;
   int _damage;

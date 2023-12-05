@@ -2,19 +2,27 @@
 #include <iostream>
 #include <string>
 
-ClapTrap::ClapTrap() {
+int ClapTrap::count = 0;
+
+ClapTrap::ClapTrap() : _hp(10), _ep(10), _damage(0) {
   std::cout << DEFCONST << std::endl;
-  _hp = 10;
-  _ep = 10;
-  _damage = 0;
-  _name = "default ClapTrap";
+  _name = std::string("ClapTrap ") + std::to_string(count++);
 }
 
-ClapTrap::ClapTrap(const ClapTrap &C) { *this = C; }
+ClapTrap::ClapTrap(const std::string &name)
+    : _hp(10), _ep(10), _damage(0), _name(name) {
+  std::cout << NAMECONST << std::endl;
+}
+
+ClapTrap::ClapTrap(const ClapTrap &C) {
+  std::cout << COPYCONST << std::endl;
+  *this = C;
+}
 
 ClapTrap::~ClapTrap() { std::cout << DESTRUCT << std::endl; }
 
 ClapTrap &ClapTrap::operator=(const ClapTrap &C) {
+  std::cout << COPYASSIGN << std::endl;
   if (this != &C) {
     _hp = C._hp;
     _ep = C._ep;
@@ -24,10 +32,11 @@ ClapTrap &ClapTrap::operator=(const ClapTrap &C) {
   return *this;
 }
 
-void ClapTrap::setName(const std::string &name) { _name = name; }
-
 void ClapTrap::attack(const std::string &target) {
-  if (_ep > 0) {
+  if (_hp == 0) {
+    std::cout << "ClapTrap " << _name
+              << " cannot attack because it has no HP left!" << std::endl;
+  } else if (_ep > 0) {
     std::cout << "ClapTrap " << _name << " attacks " << target << " causing "
               << std::to_string(_damage) << " points of damage!" << std::endl;
     --_ep;
@@ -37,19 +46,40 @@ void ClapTrap::attack(const std::string &target) {
 }
 
 void ClapTrap::takeDamage(unsigned int amount) {
-  _hp -= amount;
-  if (_hp <= 0)
-    std::cout << "ClapTrap " << _name << " has 0 hitpoints left!" << std::endl;
+  if (_hp == 0) {
+    std::cout << "ClapTrap " << _name
+              << " is already destroyed!" << std::endl;
+  }
+  else {
+    std::cout << "ClapTrap " << _name << " took " << std::to_string(amount)
+              << " damage!" << std::endl;
+    _hp -= amount;
+    if (_hp <= 0) {
+      _hp = 0;
+      std::cout << "ClapTrap " << _name << " is destroyed!" << std::endl;
+    }
+  }
 }
 
 void ClapTrap::beRepaired(unsigned int amount) {
-  if (_ep > 0) {
+  if (_hp == 0) {
+    std::cout << "ClapTrap " << _name
+              << " cannot be repaired because it has no HP left!" << std::endl;
+  } else if (_ep > 0) {
     --_ep;
-    std::cout << "ClapTrap " << _name << " heals " << std::to_string(amount)
-      << " of hitpoints!" << std::endl;
+    std::cout << "ClapTrap " << _name << " repairs " << std::to_string(amount)
+              << " of hitpoints!" << std::endl;
     _hp += amount;
+  } else {
+    std::cout << "ClapTrap " << _name
+              << " cannot be repaired because it has no energy left!"
+              << std::endl;
   }
-  else{
-    std::cout << "ClapTrap " << _name << " has no energy left!" << std::endl;
-  }
+}
+
+void ClapTrap::printStatus() {
+  std::cout << "ClapTrap " << _name << " has: " << std::endl
+            << std::to_string(_hp) << " Hit Points" << std::endl
+            << std::to_string(_ep) << " Energy Points" << std::endl
+            << std::to_string(_damage) << " Attack damage" << std::endl;
 }
