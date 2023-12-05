@@ -9,7 +9,6 @@ public:
   Point(const float x, const float y);
   Point(const Point &P);
   ~Point();
-
   Point &operator=(const Point &P);
 
 private:
