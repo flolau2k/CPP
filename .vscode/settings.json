@@ -69,5 +69,6 @@
 	},
 	"C_Cpp.clang_format_fallbackStyle": "LLVM",
 	"editor.tabSize": 2,
-	"editor.insertSpaces": true
+  "editor.insertSpaces": true,
+  "editor.renderWhitespace": "selection"
 }
