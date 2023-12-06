@@ -4,6 +4,8 @@
 int	main(void) {
   ScavTrap scav("Bob");
   std::cout << scav << std::endl;
+  ScavTrap trap;
+  std::cout << trap << std::endl;
   scav.attack("random chump");
   scav.takeDamage(10);
   std::cout << scav << std::endl;

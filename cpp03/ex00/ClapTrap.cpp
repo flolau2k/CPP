@@ -12,14 +12,20 @@ ClapTrap::ClapTrap() : _hp(10), _ep(10), _damage(0) {
 ClapTrap::ClapTrap(const std::string &name)
     : _hp(10), _ep(10), _damage(0), _name(name) {
   std::cout << "ClapTrap " << NAMECONST << std::endl;
+  ++count;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &C) {
   std::cout << "ClapTrap " << COPYCONST << std::endl;
   *this = C;
+  ++count;
 }
 
-ClapTrap::~ClapTrap() { std::cout << "ClapTrap" << DESTRUCT << std::endl; }
+ClapTrap::~ClapTrap() {
+  std::cout << "ClapTrap" << DESTRUCT << std::endl;
+  --count;
+}
+
 
 ClapTrap &ClapTrap::operator=(const ClapTrap &C) {
   std::cout << "ClapTrap " << COPYASSIGN << std::endl;
