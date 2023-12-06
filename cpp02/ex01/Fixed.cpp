@@ -31,19 +31,17 @@ Fixed &Fixed::operator=(const Fixed &F) {
   return *this;
 }
 
-int Fixed::getRawBits(void) const {
-  return _store;
-}
+int Fixed::getRawBits(void) const { return _store; }
 
-void Fixed::setRawBits(const int raw) {
-  _store = raw;
-}
+void Fixed::setRawBits(const int raw) { _store = raw; }
 
 /// @brief convert Fixed to float. Create a float from the _store integer and
 /// devide it by the number fractional bits.
 /// @param void
 /// @return floating point representation of Fixed
-float Fixed::toFloat(void) const { return float(_store) / (1 << fract); }
+float Fixed::toFloat(void) const {
+  return static_cast<float>(_store) / (1 << fract);
+}
 
 int Fixed::toInt(void) const { return getRawBits() >> fract; }
 
