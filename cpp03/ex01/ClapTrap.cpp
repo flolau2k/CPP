@@ -47,10 +47,8 @@ void ClapTrap::attack(const std::string &target) {
 
 void ClapTrap::takeDamage(unsigned int amount) {
   if (_hp == 0) {
-    std::cout << "ClapTrap " << _name
-              << " is already destroyed!" << std::endl;
-  }
-  else {
+    std::cout << "ClapTrap " << _name << " is already destroyed!" << std::endl;
+  } else {
     std::cout << "ClapTrap " << _name << " took " << std::to_string(amount)
               << " damage!" << std::endl;
     _hp -= amount;
@@ -77,9 +75,18 @@ void ClapTrap::beRepaired(unsigned int amount) {
   }
 }
 
-void ClapTrap::printStatus() {
-  std::cout << "ClapTrap " << _name << " has: " << std::endl
-            << std::to_string(_hp) << " Hit Points" << std::endl
-            << std::to_string(_ep) << " Energy Points" << std::endl
-            << std::to_string(_damage) << " Attack damage" << std::endl;
+const std::string &ClapTrap::getName() const { return _name; }
+
+int ClapTrap::getHP() const { return _hp; }
+
+int ClapTrap::getEP() const { return _ep; }
+
+int ClapTrap::getDamage() const { return _damage; }
+
+std::ostream &operator<<(std::ostream &out, const ClapTrap &C) {
+  return out << C.getName() << " has:" << std::endl
+             << "   " << std::to_string(C.getHP()) << " Hit Points" << std::endl
+             << "   " << std::to_string(C.getEP()) << " Energy Points"
+             << std::endl
+             << "   " << std::to_string(C.getDamage()) << " Attack damage";
 }

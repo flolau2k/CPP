@@ -17,11 +17,14 @@ public:
   ClapTrap &operator=(const ClapTrap &C);
   ~ClapTrap();
 
-  virtual void attack(const std::string &target);
+  void attack(const std::string &target);
   void takeDamage(unsigned int amount);
   void beRepaired(unsigned int amount);
 
-  void printStatus();
+  const std::string &getName() const;
+  int getHP() const;
+  int getEP() const;
+  int getDamage() const;
 
 protected:
   static int  count;
@@ -30,5 +33,7 @@ protected:
   int _damage;
   std::string _name;
 };
+
+std::ostream &operator<<(std::ostream &out, const ClapTrap &C);
 
 #endif // CLAPTRAP_H
