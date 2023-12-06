@@ -1,4 +1,3 @@
-#include <cmath>
 #include "Fixed.hpp"
 
 Fixed::Fixed() { _store = 0; }
@@ -18,9 +17,7 @@ Fixed &Fixed::operator=(const Fixed &F) {
   return *this;
 }
 
-bool Fixed::operator<(const Fixed &F) const {
-  return _store < F._store;
-}
+bool Fixed::operator<(const Fixed &F) const { return _store < F._store; }
 
 bool Fixed::operator>(const Fixed &F) const { return (F < *this); }
 
@@ -48,8 +45,8 @@ Fixed Fixed::operator-(const Fixed &F) {
 
 Fixed Fixed::operator*(const Fixed &F) {
   Fixed ret;
-  int64_t tmp = static_cast<int64_t>(getRawBits()) *
-                static_cast<int64_t>(F.getRawBits());
+  int64_t tmp =
+      static_cast<int64_t>(getRawBits()) * static_cast<int64_t>(F.getRawBits());
   ret.setRawBits(static_cast<int32_t>(tmp >> fract));
   return ret;
 }
@@ -63,24 +60,24 @@ Fixed Fixed::operator/(const Fixed &F) {
 }
 
 Fixed &Fixed::operator++() {
-  this->_store++;
+  _store++;
   return *this;
 }
 
 Fixed &Fixed::operator--() {
-  this->_store--;
+  _store--;
   return *this;
 }
 
 Fixed Fixed::operator++(int) {
   Fixed ret = *this;
-  this->_store++;
+  _store++;
   return ret;
 }
 
 Fixed Fixed::operator--(int) {
   Fixed ret = *this;
-  this->_store--;
+  _store--;
   return ret;
 }
 
@@ -108,7 +105,7 @@ int32_t Fixed::getRawBits(void) const { return _store; }
 
 void Fixed::setRawBits(const int32_t raw) { _store = raw; }
 
-float Fixed::toFloat(void) const { return float(_store) / (1 << fract); }
+float Fixed::toFloat(void) const { return static_cast<float>(_store) / (1 << fract); }
 
 int Fixed::toInt(void) const { return getRawBits() >> fract; }
 
