@@ -1,14 +1,10 @@
-#include "ScavTrap.hpp"
 #include "FragTrap.hpp"
+#include <iostream>
 
 int	main(void) {
-  ScavTrap scav("ScavTrap");
-  ScavTrap &scav_ref = scav;
-  ClapTrap &clap_ref = scav;
-  scav.attack("random chump");
-  scav_ref.attack("random");
-  clap_ref.attack("chump");
-  ScavTrap clap = scav;
-  clap.guardGate();
+  FragTrap frag("Bob");
+  frag.attack("random chump");
+  std::cout << frag << std::endl;
+  frag.highFivesGuys();
   return 0;
 }

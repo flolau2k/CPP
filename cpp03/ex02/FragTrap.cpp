@@ -4,15 +4,15 @@
 
 FragTrap::FragTrap() : ClapTrap() {
   std::cout << "FragTrap " << DEFCONST << std::endl;
-  _damage = 20;
-  _ep = 50;
+  _damage = 30;
+  _ep = 100;
   _hp = 100;
 }
 
 FragTrap::FragTrap(const std::string &name) : ClapTrap(name) {
   std::cout << "FragTrap " << NAMECONST << std::endl;
-  _damage = 20;
-  _ep = 50;
+  _damage = 30;
+  _ep = 100;
   _hp = 100;
 }
 
