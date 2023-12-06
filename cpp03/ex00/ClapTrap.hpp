@@ -21,7 +21,10 @@ public:
   void takeDamage(unsigned int amount);
   void beRepaired(unsigned int amount);
 
-  void printStatus();
+  const std::string &getName() const;
+  int getHP() const;
+  int getEP() const;
+  int getDamage() const;
 
 private:
   static int  count;
@@ -30,5 +33,7 @@ private:
   int _damage;
   std::string _name;
 };
+
+std::ostream &operator<<(std::ostream &out, const ClapTrap &C);
 
 #endif // CLAPTRAP_H
