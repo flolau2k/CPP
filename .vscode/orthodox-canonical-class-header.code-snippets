@@ -6,6 +6,18 @@
   // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
   // Placeholders with the same ids are connected.
   // Example:
+  "Include Guard": {
+    "scope": "cpp",
+    "prefix": "includeguard",
+    "body": [
+      "#ifndef $1",
+      "#define $1",
+      "",
+      "#endif // $1"
+    ],
+    "description": "include guard template"
+  },
+  
   "Orthodox Canonical Header": {
     "scope": "cpp",
     "prefix": "ortoh",
