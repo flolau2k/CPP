@@ -11,7 +11,7 @@ public:
   Point(const float x, const float y);
   Point(const Point &P);
   ~Point();
-  const Point &operator=(const Point &P) ;
+  const Point &operator=(const Point &P);
   Fixed getX() const;
   Fixed getY() const;
 
