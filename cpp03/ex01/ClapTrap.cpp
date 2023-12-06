@@ -85,8 +85,8 @@ int ClapTrap::getDamage() const { return _damage; }
 
 std::ostream &operator<<(std::ostream &out, const ClapTrap &C) {
   return out << C.getName() << " has:" << std::endl
-             << "   " << std::to_string(C.getHP()) << " Hit Points" << std::endl
-             << "   " << std::to_string(C.getEP()) << " Energy Points"
+             << "\t" << std::to_string(C.getHP()) << " Hit Points" << std::endl
+             << "\t" << std::to_string(C.getEP()) << " Energy Points"
              << std::endl
-             << "   " << std::to_string(C.getDamage()) << " Attack damage";
+             << "\t" << std::to_string(C.getDamage()) << " Attack damage";
 }

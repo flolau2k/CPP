@@ -25,9 +25,10 @@ public:
 
 protected:
   static int  count;
-  int _hp;
-  int _ep;
-  int _damage;
+
+  int         _hp;
+  int         _ep;
+  int         _damage;
   std::string _name;
 };
 

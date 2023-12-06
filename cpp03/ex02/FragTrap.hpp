@@ -2,7 +2,6 @@
 #define FRAGTRAP_H
 
 #include "ClapTrap.hpp"
-#include <string>
 
 class FragTrap : public ClapTrap {
 public:
@@ -13,9 +12,6 @@ public:
   ~FragTrap();
 
   void highFivesGuys() const;
-
-private:
-
 };
 
 #endif // FRAGTRAP_H
