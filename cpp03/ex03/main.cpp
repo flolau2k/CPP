@@ -1,10 +1,12 @@
-#include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 #include <iostream>
 
 int	main(void) {
-  FragTrap frag("Bob");
-  frag.attack("random chump");
-  std::cout << frag << std::endl;
-  frag.highFivesGuys();
+  DiamondTrap diam("Bob");
+  diam.attack("random chump");
+  diam.whoAmI();
+  std::cout << diam << std::endl;
+  diam.highFivesGuys();
+  diam.guardGate();
   return 0;
 }

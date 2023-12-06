@@ -1,7 +1,7 @@
 NAME =		ex03_out
 
 CC =		c++
-CFLAGS =	-g -Wall -Wextra -Werror -std=c++98
+CFLAGS =	-g -Wall -Wextra -Werror -Wshadow -std=c++98
 
 INCLUDES =	-Iinclude
 
