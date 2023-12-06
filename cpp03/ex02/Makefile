@@ -1,4 +1,4 @@
-NAME =		ex01_out
+NAME =		ex02_out
 
 CC =		c++
 CFLAGS =	-g -Wall -Wextra -Werror -std=c++98
@@ -7,8 +7,8 @@ INCLUDES =	-Iinclude
 
 OBJDIR =	obj
 
-FILES =		main.cpp ClapTrap.cpp ScavTrap.cpp
-HEADER_F =	ClapTrap.hpp ScavTrap.hpp
+FILES =		main.cpp ClapTrap.cpp FragTrap.cpp
+HEADER_F =	ClapTrap.hpp FragTrap.hpp
 
 SRC =		$(FILES)
 OBJ =		$(addprefix $(OBJDIR)/, $(FILES:%.cpp=%.o))
