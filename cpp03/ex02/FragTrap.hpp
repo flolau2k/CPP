@@ -1,3 +1,6 @@
+#ifndef FRAGTRAP_H
+#define FRAGTRAP_H
+
 #include "ClapTrap.hpp"
 #include <string>
 
@@ -14,3 +17,5 @@ public:
 private:
 
 };
+
+#endif // FRAGTRAP_H
