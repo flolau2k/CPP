@@ -1,4 +1,4 @@
-NAME =		ex00_out
+NAME =		ex01_out
 
 CC =		c++
 CFLAGS =	-g -Wall -Wextra -Werror -Wshadow -std=c++98
@@ -7,9 +7,8 @@ INCLUDES =	-Iinclude
 
 OBJDIR =	obj
 
-FILES =		main.cpp Animal.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp \
-					Brain.cpp
-HEADER_F =	Animal.hpp Cat.hpp Dog.hpp WrongAnimal.hpp WrongCat.cpp Brain.hpp
+FILES =		main.cpp Animal.cpp Cat.cpp Dog.cpp Brain.cpp
+HEADER_F =	Animal.hpp Cat.hpp Dog.hpp Brain.hpp
 
 SRC =		$(FILES)
 OBJ =		$(addprefix $(OBJDIR)/, $(FILES:%.cpp=%.o))
