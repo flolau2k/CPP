@@ -21,7 +21,7 @@ Cat &Cat::operator=(const Cat &other) {
   std::cout << "Cat " << COPYASSIGN << std::endl;
   if (this != &other) {
     type = other.type;
-    brain = other.brain;
+    *brain = *(other.brain);
   }
   return *this;
 }
