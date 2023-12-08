@@ -9,16 +9,16 @@ Character::Character(const std::string &name) {
   }
 }
 
-Character::Character(const Character &cpy) {
-  *this = cpy;
-}
+Character::Character(const Character &cpy) { *this = cpy; }
 
 Character &Character::operator=(const Character &other) {
   if (this != &other) {
     _name = other._name;
     for (int i = 0; i < inventory_size; ++i) {
-      if (inventory[i]) delete inventory[i], inventory[i] = NULL;
-      if (other.inventory[i]) inventory[i] = other.inventory[i]->clone();
+      if (inventory[i])
+        delete inventory[i], inventory[i] = NULL;
+      if (other.inventory[i])
+        inventory[i] = other.inventory[i]->clone();
     }
   }
   return *this;
@@ -26,15 +26,22 @@ Character &Character::operator=(const Character &other) {
 
 Character::~Character() {
   for (int i = 0; i < inventory_size; ++i) {
-    if (inventory[i]) delete inventory[i];
-    if (dropped[i]) delete dropped[i];
+    if (inventory[i])
+      delete inventory[i];
+    if (dropped[i])
+      delete dropped[i];
   }
 }
 
 void Character::equip(AMateria *m) {
   for (int i = 0; i < inventory_size; ++i) {
-    if (!m) return ;
-    if (inventory[i] == NULL) inventory[i] = m;
+    if (!m)
+      return;
+    if (inventory[i] == NULL)
+    {
+      inventory[i] = m;
+      break;
+    }
   }
 }
 
@@ -43,7 +50,8 @@ void Character::unequip(int idx) {
     std::cerr << "index out of range!" << std::endl;
     return;
   }
-  if (inventory[idx]) dropped[idx] = inventory[idx], inventory[idx] = NULL;
+  if (inventory[idx])
+    dropped[idx] = inventory[idx], inventory[idx] = NULL;
 }
 
 void Character::use(int idx, ICharacter &target) {
@@ -51,9 +59,8 @@ void Character::use(int idx, ICharacter &target) {
     std::cerr << "index out of range!" << std::endl;
     return;
   }
-  if (inventory[idx]) inventory[idx]->use(target);
+  if (inventory[idx])
+    inventory[idx]->use(target);
 }
 
-const std::string &Character::getName() const {
-  return _name;
-}
+const std::string &Character::getName() const { return _name; }
