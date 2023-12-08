@@ -3,7 +3,7 @@
 
 #include "AMateria.hpp"
 
-class Cure : AMateria {
+class Cure : public AMateria {
 public:
   Cure();
   Cure(const Cure &other);

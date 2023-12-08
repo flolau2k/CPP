@@ -3,7 +3,7 @@
 
 #include "ICharacter.hpp"
 
-class Character : ICharacter {
+class Character : public ICharacter {
 public:
   Character(const std::string &name);
   Character(const Character &cpy);
