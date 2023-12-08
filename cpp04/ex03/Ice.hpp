@@ -2,12 +2,13 @@
 #define ICE_H
 
 #include "AMateria.hpp"
+#include "ICharacter.hpp"
 
 class Ice : public AMateria {
 public:
   Ice();
   Ice(const Ice &cpy);
-  Ice &operator=(const Ice &other);
+  Ice &operator=(const Ice &);
   ~Ice();
 
   Ice *clone() const;

@@ -3,12 +3,11 @@ NAME =		ex03_out
 CC =		c++
 CFLAGS =	-g -Wall -Wextra -Werror -Wshadow -std=c++98
 
-INCLUDES =	-Iinclude
-
 OBJDIR =	obj
 
-FILES =		main.cpp 
-HEADER_F =	
+FILES =		main.cpp AMateria.cpp Character.cpp Cure.cpp Ice.cpp MateriaSource.cpp
+HEADER_F =	AMateria.hpp Character.hpp Cure.hpp Ice.hpp ICharacter.hpp \
+						IMateriaSource.hpp MateriaSource.hpp
 
 SRC =		$(FILES)
 OBJ =		$(addprefix $(OBJDIR)/, $(FILES:%.cpp=%.o))
@@ -17,11 +16,11 @@ HEADERS =	$(HEADER_F)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) $(INCLUDES) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 	@echo "built $(NAME)"
 
 $(OBJDIR)/%.o: %.cpp $(HEADERS) | $(OBJDIR)
-	$(CC) $(CFLAGS) $(INCLUDES) -c -o $@ $<
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 $(OBJDIR):
 	@mkdir -p $(OBJDIR)

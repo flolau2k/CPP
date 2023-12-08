@@ -5,7 +5,7 @@ Cure::Cure() : AMateria("cure") {}
 
 Cure::Cure(const Cure &cpy) : AMateria(cpy) {}
 
-Cure &Cure::operator=(const Cure &other) { return *this; }
+Cure &Cure::operator=(const Cure &) { return *this; }
 
 Cure::~Cure() {}
 

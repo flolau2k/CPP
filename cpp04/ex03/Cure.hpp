@@ -2,12 +2,13 @@
 #define CURE_H
 
 #include "AMateria.hpp"
+#include "ICharacter.hpp"
 
 class Cure : public AMateria {
 public:
   Cure();
-  Cure(const Cure &other);
-  Cure &operator=(const Cure &other);
+  Cure(const Cure &cpy);
+  Cure &operator=(const Cure &);
   ~Cure();
 
   Cure *clone() const;

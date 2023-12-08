@@ -53,3 +53,7 @@ void Character::use(int idx, ICharacter &target) {
   }
   if (inventory[idx]) inventory[idx]->use(target);
 }
+
+const std::string &Character::getName() const {
+  return _name;
+}

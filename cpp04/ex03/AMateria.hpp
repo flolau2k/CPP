@@ -2,7 +2,8 @@
 #define AMATERIA_H
 
 #include <string>
-#include "ICharacter.hpp"
+
+class ICharacter;
 
 class AMateria {
 public:
