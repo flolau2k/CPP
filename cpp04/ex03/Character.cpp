@@ -33,16 +33,30 @@ Character::~Character() {
   }
 }
 
-void Character::equip(AMateria *m) {
+void Character::dropMateria(AMateria *m) {
   for (int i = 0; i < inventory_size; ++i) {
-    if (!m)
+    if (dropped[i] == NULL) {
+      dropped[i] = m;
       return;
-    if (inventory[i] == NULL)
-    {
-      inventory[i] = m;
-      break;
     }
   }
+  delete dropped[0];
+  for (int i = 0; i < inventory_size - 1; --i) {
+    dropped[i] = dropped[i + 1];
+  }
+  dropped[inventory_size - 1] = m;
+}
+
+void Character::equip(AMateria *m) {
+  if (!m)
+    return;
+  for (int i = 0; i < inventory_size; ++i) {
+    if (inventory[i] == NULL) {
+      inventory[i] = m;
+      return;
+    }
+  }
+  std::cerr << "Inventory is full!" << std::endl;
 }
 
 void Character::unequip(int idx) {
@@ -51,7 +65,10 @@ void Character::unequip(int idx) {
     return;
   }
   if (inventory[idx])
-    dropped[idx] = inventory[idx], inventory[idx] = NULL;
+  {
+    dropMateria(inventory[idx]);
+    inventory[idx] = NULL;
+  }
 }
 
 void Character::use(int idx, ICharacter &target) {

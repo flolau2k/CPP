@@ -20,6 +20,8 @@ private:
   std::string _name;
   AMateria *inventory[inventory_size];
   AMateria *dropped[inventory_size];
+
+  void dropMateria(AMateria *m);
 };
 
 #endif // CHARACTER_H
