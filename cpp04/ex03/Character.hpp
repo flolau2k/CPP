@@ -19,6 +19,7 @@ private:
   static const int inventory_size = 4;
   std::string _name;
   AMateria *inventory[inventory_size];
+  AMateria *dropped[inventory_size];
 };
 
 #endif // CHARACTER_H

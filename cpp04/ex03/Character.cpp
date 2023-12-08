@@ -5,6 +5,7 @@ Character::Character(const std::string &name) {
   _name = name;
   for (int i = 0; i < inventory_size; ++i) {
     inventory[i] = NULL;
+    dropped[i] = NULL;
   }
 }
 
@@ -26,6 +27,7 @@ Character &Character::operator=(const Character &other) {
 Character::~Character() {
   for (int i = 0; i < inventory_size; ++i) {
     if (inventory[i]) delete inventory[i];
+    if (dropped[i]) delete dropped[i];
   }
 }
 
@@ -37,15 +39,15 @@ void Character::equip(AMateria *m) {
 }
 
 void Character::unequip(int idx) {
-  if (idx >= inventory_size) {
+  if (idx >= inventory_size || idx < 0) {
     std::cerr << "index out of range!" << std::endl;
     return;
   }
-  if (inventory[idx]) delete inventory[idx];
+  if (inventory[idx]) dropped[idx] = inventory[idx], inventory[idx] = NULL;
 }
 
 void Character::use(int idx, ICharacter &target) {
-  if (idx >= inventory_size) {
+  if (idx >= inventory_size || idx < 0) {
     std::cerr << "index out of range!" << std::endl;
     return;
   }
