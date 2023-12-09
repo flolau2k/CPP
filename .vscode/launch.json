@@ -8,7 +8,7 @@
 			"name": "(gdb) Launch",
 			"type": "cppdbg",
 			"request": "launch",
-			"program": "${fileDirname}/ex03_out",
+			"program": "${fileDirname}/ex01_out",
 			"args": [],
 			"stopAtEntry": false,
 			"cwd": "${fileDirname}",
