@@ -1,4 +1,4 @@
-NAME =		ex00_out
+NAME =		a.out
 
 CC =		c++
 CFLAGS =	-g -Wall -Wextra -Werror -Wshadow -std=c++98
