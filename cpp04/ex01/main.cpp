@@ -36,6 +36,10 @@ void test_deep_copy() {
 
   tom.insertIdea("catch mouse", 0);
   {
+    Cat minny(tom);
+  }
+  std::cout << tom.getIdea(0) << std::endl;
+  {
     Cat minny = tom;
   }
   std::cout << tom.getIdea(0) << std::endl;
