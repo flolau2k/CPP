@@ -1,14 +1,21 @@
+#include <iostream>
 #include "Brain.hpp"
 
-Brain::Brain() {}
+Brain::Brain() {
+  std::cout << "Brain " << DEFCONST << std::endl;
+}
 
 Brain::Brain(const Brain &other) {
+  std::cout << "Brain " << COPYCONST << std::endl;
   *this = other;
 }
 
-Brain::~Brain() {}
+Brain::~Brain() {
+  std::cout << "Brain " << DESTRUCT << std::endl;
+}
 
 Brain &Brain::operator=(const Brain &other) {
+  std::cout << "Brain " << COPYASSIGN << std::endl;
   if (this != &other) {
     for (int i = 0; i < count; ++i) {
       ideas[i] = other.ideas[i];
