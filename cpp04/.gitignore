@@ -1,0 +1,6 @@
+*.DS_Store*
+*obj/
+*.o
+*.dSYM
+*_out
+*.pdf

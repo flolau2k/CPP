@@ -2,6 +2,7 @@
 #define BRAIN_H
 
 #include <string>
+#include "defines.h"
 
 class Brain {
 public:

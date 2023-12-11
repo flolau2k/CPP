@@ -2,11 +2,7 @@
 #define AANIMAL_H
 
 #include <string>
-
-#define DEFCONST "default constructor called"
-#define COPYCONST "copy constructor called"
-#define COPYASSIGN "Copy Assignment operator called"
-#define DESTRUCT "Destructor called"
+#include "defines.h"
 
 class AAnimal {
 public:
