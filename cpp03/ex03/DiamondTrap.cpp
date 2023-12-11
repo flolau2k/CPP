@@ -6,6 +6,7 @@ DiamondTrap::DiamondTrap() : FragTrap(), ScavTrap() {
   _hp = 100;
   _ep = 50;
   _damage = 30;
+  ClapTrap::_name += "_clap_name";
 }
 
 DiamondTrap::DiamondTrap(const std::string &name)
@@ -35,6 +36,10 @@ DiamondTrap &DiamondTrap::operator=(const DiamondTrap &D) {
     _name = D._name;
   }
   return *this;
+}
+
+void DiamondTrap::attack(const std::string &target) {
+  ScavTrap::attack(target);
 }
 
 void DiamondTrap::whoAmI() const {
