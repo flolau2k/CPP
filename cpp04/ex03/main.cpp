@@ -1,9 +1,10 @@
+#include <iostream>
 #include "MateriaSource.hpp"
 #include "Cure.hpp"
 #include "Ice.hpp"
 #include "Character.hpp"
 
-int main() {
+void test_mand() {
   IMateriaSource *src = new MateriaSource();
   src->learnMateria(new Ice());
   src->learnMateria(new Cure());
@@ -24,6 +25,45 @@ int main() {
   delete bob;
   delete me;
   delete src;
+}
 
+void test_extended() {
+  MateriaSource src;
+  src.learnMateria(new Ice());
+  src.learnMateria(new Cure());
+
+  Character c("bob");
+  AMateria *tmp;
+  tmp = src.createMateria("ice");
+  c.equip(tmp);
+  tmp = src.createMateria("cure");
+  c.equip(tmp);
+
+  Character e(c);
+  e.use(0, c);
+  e.use(1, c);
+
+  std::cout << "reverse..." << std::endl;
+  c.use(0, e);
+  c.use(1, e);
+}
+
+int main(int argc, char **argv) {
+  if (argc > 1)
+  {
+    std::string arg = argv[1];
+    if (arg == "1") {
+      test_mand();
+    }
+    else if (arg == "2") {
+      test_extended();
+    }
+    else {
+      std::cerr << "unrecognized option." << std::endl;
+    }
+  }
+  else {
+    std::cerr << "please choose test [1 - 4]!" << std::endl;
+  }
   return 0;
 }
