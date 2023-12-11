@@ -9,7 +9,13 @@ Character::Character(const std::string &name) {
   }
 }
 
-Character::Character(const Character &cpy) { *this = cpy; }
+Character::Character(const Character &cpy) {
+  for (int i = 0; i < inventory_size; ++i) {
+    inventory[i] = NULL;
+    dropped[i] = NULL;
+  }
+  *this = cpy;
+}
 
 Character &Character::operator=(const Character &other) {
   if (this != &other) {
@@ -64,8 +70,7 @@ void Character::unequip(int idx) {
     std::cerr << "index out of range!" << std::endl;
     return;
   }
-  if (inventory[idx])
-  {
+  if (inventory[idx]) {
     dropMateria(inventory[idx]);
     inventory[idx] = NULL;
   }
