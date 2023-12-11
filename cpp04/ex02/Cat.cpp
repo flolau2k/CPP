@@ -9,6 +9,7 @@ Cat::Cat() : AAnimal() {
 
 Cat::Cat(const Cat &other) : AAnimal(other) {
   std::cout << "Cat " << COPYCONST << std::endl;
+  brain = new Brain();
   *this = other;
 }
 

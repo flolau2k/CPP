@@ -9,6 +9,7 @@ Dog::Dog() : AAnimal() {
 
 Dog::Dog(const Dog &other) : AAnimal(other) {
   std::cout << "Dog " << COPYCONST << std::endl;
+  brain = new Brain();
   *this = other;
 }
 
