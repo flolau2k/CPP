@@ -33,11 +33,12 @@ void test_idea() {
 
 void test_deep_copy() {
   Cat tom;
-  Cat minny;
 
   tom.insertIdea("catch mouse", 0);
-  minny = tom;
-  std::cout << minny.getIdea(0) << std::endl;
+  {
+    Cat minny = tom;
+  }
+  std::cout << tom.getIdea(0) << std::endl;
 }
 
 int main(int argc, char **argv) {
@@ -60,6 +61,8 @@ int main(int argc, char **argv) {
       std::cerr << "unrecognized option." << std::endl;
     }
   }
-
+  else {
+    std::cerr << "please choose test [1 - 4]!" << std::endl;
+  }
   return 0;
 }
