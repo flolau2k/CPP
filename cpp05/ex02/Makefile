@@ -5,8 +5,10 @@ CFLAGS =	-g -Wall -Wextra -Werror -std=c++98
 
 OBJDIR =	obj
 
-FILES =		main.cpp Bureaucrat.cpp Form.cpp
-HEADER_F =	Bureaucrat.hpp Form.hpp
+FILES =		main.cpp Bureaucrat.cpp AForm.cpp PresidentialPardonForm.cpp \
+					RobotomyRequestForm.cpp ShrubberyCreationForm.cpp
+HEADER_F =	Bureaucrat.hpp AForm.hpp PresidentialPardonForm.hpp \
+						RobotomyRequestForm.hpp ShrubberyCreationForm.hpp
 
 SRC =		$(FILES)
 OBJ =		$(addprefix $(OBJDIR)/, $(FILES:%.cpp=%.o))
