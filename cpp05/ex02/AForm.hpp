@@ -1,18 +1,18 @@
-#ifndef FORM_HPP
-#define FORM_HPP
+#ifndef AFORM_HPP
+#define AFORM_HPP
 
 #include "Bureaucrat.hpp"
 #include <string>
 
 class Bureaucrat;
 
-class Form {
+class AForm {
 public:
-  Form(const std::string &name = "Random Form", int min_grade_sign = 100,
-       int min_grade_exec = 70);
-  Form(const Form &cpy);
-  Form &operator=(const Form &other);
-  ~Form();
+  AForm(const std::string &name = "Random Form", int min_grade_sign = 100,
+        int min_grade_exec = 70);
+  AForm(const AForm &cpy);
+  AForm &operator=(const AForm &other);
+  ~AForm();
 
   const std::string &getName() const;
   bool getSigned() const;
@@ -38,6 +38,6 @@ private:
   const int _min_grade_exec;
 };
 
-std::ostream &operator<<(std::ostream &out, const Form &B);
+std::ostream &operator<<(std::ostream &out, const AForm &B);
 
-#endif // FORM_HPP
+#endif // AFORM_HPP

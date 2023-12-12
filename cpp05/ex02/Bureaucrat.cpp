@@ -50,3 +50,18 @@ const char *Bureaucrat::GradeTooHighException::what() const throw() {
 const char *Bureaucrat::GradeTooLowException::what() const throw() {
   return "\033[1;31mGrade cannot be any lower than 150!\033[0;39m";
 }
+
+void Bureaucrat::signForm(AForm &F) const {
+  if (F.getSigned()) {
+    std::cout << "Form " << F.getName() << " is already signed! abort..."
+              << std::endl;
+    return;
+  }
+  try {
+    F.beSigned(*this);
+    std::cout << name << " signed " << F.getName() << std::endl;
+  } catch (const AForm::GradeTooLowException &e) {
+    std::cout << name << " couldn't sign " << F.getName()
+              << " because his grade is too low." << std::endl;
+  }
+}

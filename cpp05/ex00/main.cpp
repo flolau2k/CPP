@@ -24,7 +24,7 @@ int main(void) {
   }
 
   std::cout << a << b << c;
-  
+
   try {
     Bureaucrat d("Otto", -1);
   } catch (std::exception &e) {

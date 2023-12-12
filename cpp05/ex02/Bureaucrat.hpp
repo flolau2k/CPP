@@ -1,10 +1,10 @@
 #ifndef BUREAUCRAT_HPP
 #define BUREAUCRAT_HPP
 
-#include "Form.hpp"
+#include "AForm.hpp"
 #include <string>
 
-class Form;
+class AForm;
 
 class Bureaucrat {
 public:
@@ -17,7 +17,7 @@ public:
   void incrementGrade();
   void decrementGrade();
 
-  void signForm(Form &F) const;
+  void signForm(AForm &F) const;
   int getGrade() const;
   const std::string &getName() const;
 
