@@ -11,3 +11,4 @@ orig.log
 *.replace
 *.pdf
 harlFilter
+*.out
