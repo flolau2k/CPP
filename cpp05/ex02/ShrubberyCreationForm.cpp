@@ -4,15 +4,14 @@
 #include <iostream>
 
 const std::string ShrubberyCreationForm::TREE = \
-"    ^\n \
-    / \\n \
-   /   \\n \
-  /     \\n \
- /_______\\n \
-    ||\n \
-    ||\n \
-    ||\n \
- ";
+"     ^\n"
+"    / \\\n"
+"   /   \\\n"
+"  /     \\\n"
+" /_______\\\n"
+"    ||\n"
+"    ||\n"
+"    ||";
 
 ShrubberyCreationForm::ShrubberyCreationForm(
     const std::string &target /* = "home" */)
@@ -24,6 +23,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &cpy)
 ShrubberyCreationForm &
 ShrubberyCreationForm::operator=(const ShrubberyCreationForm &other) {
   AForm::operator=(other);
+  return *this;
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm() {}
