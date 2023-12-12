@@ -4,15 +4,15 @@
 AForm::AForm(const std::string &name /* = "Random Form" */,
              int min_grade_sign /* = 100 */, int min_grade_exec /* = 70 */,
              const std::string &target /* = "home" */)
-    : _name(name), _min_grade_sign(min_grade_sign),
-      _min_grade_exec(min_grade_exec), _target(target) {
+    : _name(name), _target(target), _min_grade_sign(min_grade_sign),
+      _min_grade_exec(min_grade_exec) {
   _signed = false;
 }
 
 AForm::AForm(const AForm &cpy)
-    : _name(cpy._name), _signed(cpy._signed),
+    : _name(cpy._name), _target(cpy._target), _signed(cpy._signed),
       _min_grade_sign(cpy._min_grade_sign),
-      _min_grade_exec(cpy._min_grade_exec), _target(cpy._target) {}
+      _min_grade_exec(cpy._min_grade_exec) {}
 
 AForm &AForm::operator=(const AForm &other) {
   _signed = other._signed;

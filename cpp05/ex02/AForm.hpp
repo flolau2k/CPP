@@ -20,7 +20,7 @@ public:
   int getMinGradeSign() const;
   int getMinGradeExec() const;
   void beSigned(const Bureaucrat &B);
-  void execute(Bureaucrat const &executor) const;
+  void execute(const Bureaucrat &executor) const;
 
   class GradeTooHighException : public std::exception {
   public:
