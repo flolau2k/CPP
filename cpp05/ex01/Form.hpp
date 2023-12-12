@@ -1,14 +1,15 @@
 #ifndef FORM_H
 #define FORM_H
 
-#include <string>
 #include "Bureaucrat.hpp"
+#include <string>
 
 class Bureaucrat;
 
 class Form {
 public:
-  Form(const std::string &name, int min_grade_sign, int min_grade_exec);
+  Form(const std::string &name = "Random Form", int min_grade_sign = 100,
+       int min_grade_exec = 70);
   Form(const Form &cpy);
   Form &operator=(const Form &other);
   ~Form();
@@ -21,13 +22,13 @@ public:
   void beSigned(const Bureaucrat &B);
 
   class GradeTooHighException : public std::exception {
-    public:
-      const char *what() const throw();
+  public:
+    const char *what() const throw();
   };
 
   class GradeTooLowException : public std::exception {
-    public:
-      const char *what() const throw();
+  public:
+    const char *what() const throw();
   };
 
 private:

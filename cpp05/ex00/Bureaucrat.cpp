@@ -1,7 +1,9 @@
 #include "Bureaucrat.hpp"
 #include <iostream>
 
-Bureaucrat::Bureaucrat(const std::string &new_name, int new_grade)
+Bureaucrat::Bureaucrat(
+    const std::string &new_name /* = "Nameless Bureaucrat" */,
+    int new_grade /* = 142 */)
     : name(new_name) {
   if (new_grade > 150)
     throw(GradeTooLowException());

@@ -1,7 +1,8 @@
 #include "Form.hpp"
 #include <iostream>
 
-Form::Form(const std::string &name, int min_grade_sign, int min_grade_exec)
+Form::Form(const std::string &name /* = "Random Form" */,
+           int min_grade_sign /* = 100 */, int min_grade_exec /* = 70 */)
     : _name(name), _min_grade_sign(min_grade_sign),
       _min_grade_exec(min_grade_exec) {
   _signed = false;
@@ -36,7 +37,8 @@ const char *Form::GradeTooHighException::what() const throw() {
 }
 
 void Form::beSigned(const Bureaucrat &B) {
-  if (B.getGrade() > _min_grade_sign) throw GradeTooLowException();
+  if (B.getGrade() > _min_grade_sign)
+    throw GradeTooLowException();
   _signed = true;
 }
 
