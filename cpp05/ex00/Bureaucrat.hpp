@@ -5,7 +5,8 @@
 
 class Bureaucrat {
 public:
-  Bureaucrat(const std::string &new_name, int new_grade);
+  Bureaucrat(const std::string &new_name = "Nameless Bureaucrat",
+             int new_grade = 142);
   Bureaucrat(const Bureaucrat &cpy);
   Bureaucrat &operator=(const Bureaucrat &other);
   ~Bureaucrat();
@@ -17,13 +18,13 @@ public:
   const std::string &getName() const;
 
   class GradeTooHighException : public std::exception {
-    public:
-      const char *what() const throw();
+  public:
+    const char *what() const throw();
   };
 
   class GradeTooLowException : public std::exception {
-    public:
-      const char *what() const throw();
+  public:
+    const char *what() const throw();
   };
 
 private:
