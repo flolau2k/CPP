@@ -1,51 +1,40 @@
-#include "Form.hpp"
 #include <iostream>
+#include "Bureaucrat.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "ShrubberyCreationForm.hpp"
 
 int main(void) {
-  Form f("Passierschein A38", 10, 30);
+  {
+    AForm *form = new ShrubberyCreationForm("here");
+    Bureaucrat hans("Hans", 137);
 
-  std::cout << f << std::endl;
+    std::cout << *form << std::endl;
+    std::cout << hans << std::endl;
 
-  Bureaucrat hans("Hans", 42);
-  hans.signForm(f);
+    hans.signForm(*form);
+    std::cout << *form << std::endl;
 
-  Bureaucrat wil("Wilhelm", 2);
-  wil.signForm(f);
+    hans.executeForm(*form);
+    delete form;
+  }
+  {
+    RobotomyRequestForm form("marvin");
+    Bureaucrat vogon("some random vogon", 42);
 
-  std::cout << f << std::endl;
+    std::cout << form << std::endl;
+    std::cout << vogon << std::endl;
 
-  wil.signForm(f);
+    vogon.signForm(form);
+    vogon.executeForm(form);
+  }
+  {
+    PresidentialPardonForm form("marvin");
+    Bureaucrat supervisor("vogon supervisor", 5);
 
-  std::cout << f << std::endl;
+    supervisor.signForm(form);
+    supervisor.executeForm(form);
+  }
 
-  // a.incrementGrade();
-  // std::cout << a;
-
-  // try {
-  //   b.incrementGrade();
-  // } catch (std::exception &e) {
-  //   std::cerr << e.what() << std::endl;
-  // }
-
-  // try {
-  //   c.decrementGrade();
-  // } catch (std::exception &e) {
-  //   std::cerr << e.what() << std::endl;
-  // }
-
-  // std::cout << a << b << c;
-
-  // try {
-  //   Bureaucrat d("Otto", -1);
-  // } catch (std::exception &e) {
-  //   std::cerr << e.what() << std::endl;
-  // }
-
-  // try {
-  //   Bureaucrat e("Karl", 151);
-  // } catch (std::exception &e) {
-  //   std::cerr << e.what() << std::endl;
-  // }
-
-  // return 0;
+  return 0;
 }
