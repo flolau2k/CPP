@@ -14,5 +14,11 @@ int main(void) {
     delete rrf;
   }
 
+  {
+    ShrubberyCreationForm form = ShrubberyCreationForm();
+    std::cout << form << std::endl;
+    std::cout << form.getTarget() << std::endl;
+  }
+
   return 0;
 }
