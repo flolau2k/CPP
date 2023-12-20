@@ -5,7 +5,7 @@ CFLAGS =	-g -Wall -Wextra -Werror -std=c++98
 
 OBJDIR =	obj
 
-FILES =		ScalarConverter.cpp
+FILES =		ScalarConverter.cpp main.cpp
 HEADER_F =	ScalarConverter.hpp
 
 SRC =		$(FILES)
