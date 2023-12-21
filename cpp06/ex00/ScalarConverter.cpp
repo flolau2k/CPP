@@ -5,14 +5,14 @@
 bool ScalarConverter::is_char(const std::string &s) {
   char c;
   std::stringstream ss(s);
-  if ((ss >> c)) return true;
+  if (ss >> c) return true;
   return false;
 }
 
 bool ScalarConverter::is_int(const std::string &s) {
   int i;
   std::stringstream ss(s);
-  if ((ss >> i)) return true;
+  if (ss >> i) return true;
   return false;
 }
 
