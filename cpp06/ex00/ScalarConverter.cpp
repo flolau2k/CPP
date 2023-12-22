@@ -1,49 +1,89 @@
-#include <sstream>
-#include <iostream>
 #include "ScalarConverter.hpp"
+#include <iostream>
+#include <sstream>
 
-bool ScalarConverter::is_char(const std::string &s) {
-  char c;
-  std::stringstream ss(s);
-  if (ss >> c) return true;
-  return false;
+const char *ScalarConverter::NotSpecialTypeException::what() const throw() {
+  return "Input is not of special Type!";
 }
 
-bool ScalarConverter::is_int(const std::string &s) {
-  int i;
-  std::stringstream ss(s);
-  if (ss >> i) return true;
-  return false;
-}
-
-bool ScalarConverter::is_float(const std::string &s) {
-  float f;
-  std::stringstream ss(s);
-  if (ss >> f) return true;
-  return false;
-}
-
-bool ScalarConverter::is_double(const std::string &s) {
-  double d;
-  std::stringstream ss(s);
-  if (ss >> d) return true;
-  return false;
+type_t ScalarConverter::check_special(const std::string &s) {
+  static const std::string specials_float[] = {"-inff", "+inff", "nanf"};
+  static const std::string specials_double[] = {"-inf", "+inf", "nan"};
+  for (int i = 0; i < 3; ++i) {
+    if (s == specials_float[i])
+      return FLOAT;
+  }
+  for (int i = 0; i < 3; ++i) {
+    if (s == specials_double[i])
+      return DOUBLE;
+  }
+  throw NotSpecialTypeException();
 }
 
 type_t ScalarConverter::get_type(const std::string &s) {
-  char c;
-  int i;
-  float f;
-  double d;
-  std::stringstream ss(s);
-  if (ss >> c) return CHAR;
-  if (ss >> i) return INT;
-  if (ss >> f) return FLOAT;
-  if (ss >> d) return DOUBLE;
-  return ERROR;
+  if (s.length() == 1) {
+    if (std::isdigit(s[0]))
+      return INT;
+    return CHAR;
+  }
+  bool dec = false;
+  int len = s.length();
+  for (int i = 0; i < len; ++i) {
+    if (i == len - 1 && s[i] == 'f')
+      return FLOAT;
+    if (s[i] == '.') {
+      if (dec)
+        return ERROR;
+      dec = true;
+    } else if (!std::isdigit(s[i]))
+      return ERROR;
+  }
+  if (dec)
+    return DOUBLE;
+  return INT;
 }
 
 void ScalarConverter::convert(const std::string &s) {
   std::cout << "original input: '" << s << "'\n";
-  if (is_char(s)) std::cout << "is a char.";
+  type_t type;
+  try {
+    type = check_special(s);
+  } catch (const ScalarConverter::NotSpecialTypeException &e) {
+    type = get_type(s);
+  }
+  std::stringstream ss;
+  double d;
+  ss << s;
+  ss >> d;
+  int i;
+  ss << s;
+  ss >> i;
+  float f;
+  ss << s;
+  ss >> f;
+  char c;
+  ss << s;
+  ss >> c;
+
+  switch (type) {
+  case CHAR:
+    std::cout << "as int: " << i << "\n"
+              << "as float: " << f << "\n"
+              << "as double: " << d << std::endl;
+    break;
+  case INT:
+    std::cout << "as char: " << static_cast<int>(c) << "\n"
+              << "as float: " << f << "\n"
+              << "as double: " << d << std::endl;
+    break;
+  case FLOAT:
+    std::cout << "FLOAT!" << std::endl;
+    break;
+  case DOUBLE:
+    std::cout << "DOUBLE!" << std::endl;
+    break;
+  default:
+    std::cout << "ERROR!" << std::endl;
+    break;
+  }
 }
