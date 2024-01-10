@@ -110,7 +110,7 @@ void print_as_float(std::istringstream &iss, type_t &t) {
   reset_stream(iss);
   float f;
   iss >> f;
-  std::cout << std::fixed << std::setprecision(1) << f << "f" << std::endl;
+  std::cout << f << "f" << std::endl;
 }
 
 void print_as_double(std::istringstream &iss, type_t &t) {
@@ -125,7 +125,7 @@ void print_as_double(std::istringstream &iss, type_t &t) {
   reset_stream(iss);
   double d;
   iss >> d;
-  std::cout << std::fixed << std::setprecision(1) << d << std::endl;
+  std::cout << d << std::endl;
 }
 
 void ScalarConverter::convert(const std::string &s) {
