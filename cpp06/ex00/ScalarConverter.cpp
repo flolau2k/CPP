@@ -43,6 +43,38 @@ type_t ScalarConverter::get_type(const std::string &s) {
   return INT;
 }
 
+void check_stream(std::istringstream &iss) {
+  if (iss.good()) std::cout << "string good!" << std::endl;
+  else if (iss.eof()) std::cout << "string eof!" << std::endl;
+  else if (iss.fail()) std::cout << "string fail!" << std::endl;
+  else if (iss.bad()) std::cout << "string bad!" << std::endl;
+}
+
+void print_type(type_t &type) {
+  switch (type) {
+    case CHAR:
+      std::cout << "CHAR!";
+      break;
+    case INT:
+      std::cout << "INT!";
+      break;
+    case FLOAT:
+      std::cout << "FLOAT!";
+      break;
+    case DOUBLE:
+      std::cout << "DOUBLE!";
+      break;
+    default:
+      std::cout << "ERROR TYPE!";
+  }
+  std::cout << std::endl;
+}
+
+void reset_stream(std::istringstream &iss) {
+  iss.clear();
+  iss.seekg(0, std::ios::beg);
+}
+
 void ScalarConverter::convert(const std::string &s) {
   std::cout << "original input: '" << s << "'\n";
   type_t type;
@@ -51,39 +83,24 @@ void ScalarConverter::convert(const std::string &s) {
   } catch (const ScalarConverter::NotSpecialTypeException &e) {
     type = get_type(s);
   }
-  std::stringstream ss;
+  print_type(type);
+  std::istringstream ss(s);
   double d;
-  ss << s;
-  ss >> d;
   int i;
-  ss << s;
-  ss >> i;
   float f;
-  ss << s;
-  ss >> f;
   char c;
-  ss << s;
-  ss >> c;
 
-  switch (type) {
-  case CHAR:
-    std::cout << "as int: " << i << "\n"
-              << "as float: " << f << "\n"
-              << "as double: " << d << std::endl;
-    break;
-  case INT:
-    std::cout << "as char: " << static_cast<int>(c) << "\n"
-              << "as float: " << f << "\n"
-              << "as double: " << d << std::endl;
-    break;
-  case FLOAT:
-    std::cout << "FLOAT!" << std::endl;
-    break;
-  case DOUBLE:
-    std::cout << "DOUBLE!" << std::endl;
-    break;
-  default:
-    std::cout << "ERROR!" << std::endl;
-    break;
-  }
+  ss >> d;
+  reset_stream(ss);
+  std::cout << "double: " << d << "\n";
+  ss >> i;
+  reset_stream(ss);
+  std::cout << "int: " << i << "\n";
+  ss >> f;
+  reset_stream(ss);
+  std::cout << "float: " << f << "\n";
+  ss >> c;
+  reset_stream(ss);
+  std::cout << "char: " << c << std::endl;
+
 }
