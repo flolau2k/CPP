@@ -3,7 +3,7 @@
 
 #include <string>
 
-enum type_t {CHAR, INT, FLOAT, DOUBLE, ERROR};
+enum type_t {CHAR, INT, FLOAT, S_FLOAT, DOUBLE, S_DOUBLE, ERROR};
 
 class ScalarConverter {
 public:
