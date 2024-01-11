@@ -8,21 +8,18 @@
 
 int main(void) {
   Data data;
-  data.nb = 42;
-  data.s = "Hello World";
-  std::cout << "data in obj:\t\t\t" << data << std::endl;
-  uintptr_t uintptr = Serializer::serialize(&data);
-  std::cout << "uintptr:\t\t\t" << uintptr << std::endl;
-  std::cout << "uintptr as hex:\t\t\t" << std::hex << uintptr << std::dec
-            << std::endl;
-  std::cout << "address of obj:\t\t\t" << &data << std::endl;
-  Data *data_ptr = Serializer::deserialize(uintptr);
-  std::cout << "data of obj through ptr:\t" << *data_ptr << std::endl;
-  std::cout << "now changing data through pointer" << std::endl;
-  data_ptr->nb = 69;
-  data_ptr->s = "Goodbye World";
-  std::cout << "data of obj through ptr:\t" << *data_ptr << std::endl;
-  std::cout << "data in obj:\t\t\t" << data << std::endl;
-
-  return (0);
+  data.s = "Hallo Welt!";
+  std::cout << "Data: " << data << std::endl;
+  uintptr_t data_ptr = Serializer::serialize(&data);
+  std::cout << "data_ptr: " << data_ptr
+    << "\ndata_ptr as hex: " << std::hex << data_ptr << std::dec
+    << "\nAddress of data object: " << &data << std::endl;
+  Data *ptr;
+  ptr = Serializer::deserialize(data_ptr);
+  std::cout << "deserialized data ptr: " << ptr << std::endl;
+  std::cout << "changing data through deserialized ptr..." << std::endl;
+  ptr->s = "Bye!";
+  std::cout << "changed data original obj: " << data
+    << "\nchanged data through deserialized ptr: " << *ptr << std::endl;
+  return 0;
 }

@@ -1,7 +1,7 @@
 #include "Serializer.hpp"
 
 std::ostream &operator<<(std::ostream &os, const Data &data) {
-  os << "nb: " << data.nb << ", str: " << data.s;
+  os << data.s;
   return(os);
 }
 

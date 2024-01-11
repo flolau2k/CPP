@@ -3,7 +3,6 @@
 
 typedef struct s_data {
   std::string s;
-  int nb;
 } Data;
 
 std::ostream &operator<<(std::ostream &os, const Data &data);
