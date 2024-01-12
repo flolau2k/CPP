@@ -5,7 +5,7 @@ CFLAGS =	-g -Wall -Wextra -Werror -std=c++98
 
 OBJDIR =	obj
 
-FILES =			main.cpp Identify.cpp
+FILES =			main.cpp Identify.cpp Base.cpp
 HEADER_F =	Base.hpp A.hpp B.hpp C.hpp Identify.hpp
 
 SRC =		$(FILES)
