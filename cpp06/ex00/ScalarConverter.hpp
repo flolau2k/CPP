@@ -10,10 +10,6 @@ public:
   static void convert(const std::string &param);
 
 private:
-  static bool is_char(const std::string &s);
-  static bool is_int(const std::string &s);
-  static bool is_float(const std::string &s);
-  static bool is_double(const std::string &s);
   static type_t get_type(const std::string &s);
   static type_t check_special(const std::string &s);
 
