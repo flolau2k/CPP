@@ -6,24 +6,19 @@
 #include <iostream>
 
 Base *generate(void) {
-  int x = std::rand() + 1 / ((RAND_MAX + 1u) / 3);
-  switch (x) {
-    case 1:
-      return new A();
-    case 2:
-      return new B();
-    case 3:
-      return new C();
-  }
-  return NULL;
+  int x = std::rand() % 3;
+  std::cout << "x is: " << x << std::endl;
+  if (x % 3 == 0) return new A();
+  else if (x % 3 == 1) return new B();
+  else return new C();
 }
 
 void identify(Base *p) {
   if (dynamic_cast<A*>(p) != NULL)
     std::cout << "A!" << std::endl;
-  else if (dynamic_cast<B*>(p) != NULL)
+  if (dynamic_cast<B*>(p) != NULL)
     std::cout << "B!" << std::endl;
-  else if (dynamic_cast<C*>(p) != NULL)
+  if (dynamic_cast<C*>(p) != NULL)
     std::cout << "C!" << std::endl;
 }
 

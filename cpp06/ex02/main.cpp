@@ -2,6 +2,7 @@
 #include <iostream>
 
 int main(void) {
+  std::srand(std::time(NULL));
   Base *ptr = generate();
   while (ptr == NULL)
     ptr = generate();
