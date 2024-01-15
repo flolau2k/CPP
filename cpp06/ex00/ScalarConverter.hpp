@@ -12,6 +12,11 @@ public:
 private:
   static type_t get_type(const std::string &s);
   static type_t check_special(const std::string &s);
+  static void handle_char(const std::string &s);
+  static void handle_int(const std::string &s);
+  static void handle_float(const std::string &s);  
+  static void handle_double(const std::string &s);
+  static void handle_type(type_t &type, const std::string &s);
 
   class NotSpecialTypeException : public std::exception {
   public:

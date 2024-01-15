@@ -48,55 +48,94 @@ type_t ScalarConverter::get_type(const std::string &s) {
   return INT;
 }
 
-void handle_type(type_t &type, const std::string &s) {
+void ScalarConverter::handle_char(const std::string &s) {
   std::istringstream iss(s);
   char    c;
   long    i;
   float   f;
   double  d;
+  iss >> c;
+  i = static_cast<int>(c);
+  f = static_cast<float>(c);
+  d = static_cast<double>(c);
+  std::cout << "char: '" << c << "'\n"
+    << "int: " << i << "\n"
+    << "float: " << f << "f\n"
+    << "double: " << d << std::endl;
+}
+
+void ScalarConverter::handle_int(const std::string &s) {
+  std::istringstream iss(s);
+  char    c;
+  long    i;
+  float   f;
+  double  d;
+  iss >> i;
+  c = static_cast<char>(i);
+  f = static_cast<float>(i);
+  d = static_cast<double>(i);
+  if (i >= 0 && std::isprint(i))
+    std::cout << "char: '" << c << "'\n";
+  else
+    std::cout << "char: Non displayable\n";
+  if (i < std::numeric_limits<int>::min() || i > std::numeric_limits<int>::max())
+    std::cout << "int: overflow\n";
+  else
+    std::cout << "int: " << i << "\n";
+  std::cout << "float: " << f << "f\n"
+    << "double: " << d << std::endl;
+}
+
+void ScalarConverter::handle_float(const std::string &s) {
+  std::istringstream iss(s.substr(0, s.length() - 1));
+  char    c;
+  long    i;
+  float   f;
+  double  d;
+  iss >> f;
+  c = static_cast<char>(f);
+  i = static_cast<int>(f);
+  d = static_cast<double>(f);
+  if (i >= 0 && std::isprint(i))
+    std::cout << "char: '" << c << "'\n";
+  else
+    std::cout << "char: Non displayable\n";
+  std::cout << "int: " << i << "\n"
+    << "float: " << f << "f\n"
+    << "double: " << d << std::endl;
+}
+
+void ScalarConverter::handle_double(const std::string &s) {
+  std::istringstream iss(s);
+  char    c;
+  long    i;
+  float   f;
+  double  d;
+  iss >> d;
+  c = static_cast<char>(d);
+  i = static_cast<int>(d);
+  f = static_cast<float>(d);
+  if (i >= 0 && std::isprint(i))
+    std::cout << "char: '" << c << "'\n";
+  else
+    std::cout << "char: Non displayable\n";
+  std::cout << "int: " << i << "\n"
+    << "float: " << f << "f\n"
+    << "double: " << d << std::endl;
+}
+
+void ScalarConverter::handle_type(type_t &type, const std::string &s) {
   std::string ns;
   switch (type) {
     case CHAR:
-      // std::cout << "CHAR!" << std::endl;
-      iss >> c;
-      i = static_cast<int>(c);
-      f = static_cast<float>(c);
-      d = static_cast<double>(c);
-      std::cout << "char: '" << c << "'\n"
-        << "int: " << i << "\n"
-        << "float: " << f << "f\n"
-        << "double: " << d << std::endl;
+      handle_char(s);
       break;
     case INT:
       // std::cout << "INT!" << std::endl;
-      iss >> i;
-      c = static_cast<char>(i);
-      f = static_cast<float>(i);
-      d = static_cast<double>(i);
-      if (i >= 0 && std::isprint(c))
-        std::cout << "char: '" << c << "'\n";
-      else
-        std::cout << "char: Non displayable\n";
-      if (i < std::numeric_limits<int>::min() || i > std::numeric_limits<int>::max())
-        std::cout << "int: overflow\n";
-      else
-        std::cout << "int: " << i << "\n";
-      std::cout << "float: " << f << "f\n"
-        << "double: " << d << std::endl;
+      handle_int(s);
       break;
     case FLOAT:
-      // std::cout << "FLOAT!" << std::endl;
-      iss >> f;
-      c = static_cast<char>(f);
-      i = static_cast<int>(f);
-      d = static_cast<double>(f);
-      if (std::isprint(c))
-        std::cout << "char: '" << c << "'\n";
-      else
-        std::cout << "char: Non displayable\n";
-      std::cout << "int: " << i << "\n"
-        << "float: " << f << "f\n"
-        << "double: " << d << std::endl;
+      handle_float(s);
       break;
     case S_FLOAT:
       // std::cout << "S_FLOAT!" << std::endl;
@@ -107,18 +146,7 @@ void handle_type(type_t &type, const std::string &s) {
         << "double: " << ns << std::endl;
       break;
     case DOUBLE:
-      // std::cout << "DOUBLE!" << std::endl;
-      iss >> d;
-      c = static_cast<char>(d);
-      i = static_cast<int>(d);
-      f = static_cast<float>(d);
-      if (std::isprint(c))
-        std::cout << "char: '" << c << "'\n";
-      else
-        std::cout << "char: Non displayable\n";
-      std::cout << "int: " << i << "\n"
-        << "float: " << f << "f\n"
-        << "double: " << d << std::endl;
+      handle_double(s);
       break;
     case S_DOUBLE:
       // std::cout << "S_DOUBLE!" << std::endl;
@@ -128,7 +156,7 @@ void handle_type(type_t &type, const std::string &s) {
         << "double: " << s << std::endl;
       break;
     default:
-      std::cout << "ERROR TYPE!";
+      std::cout << "ERROR TYPE!" << std::endl;
   }
 }
 
