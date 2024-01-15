@@ -1,5 +1,7 @@
 #include "Identify.hpp"
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 
 int main(void) {
   std::srand(std::time(NULL));

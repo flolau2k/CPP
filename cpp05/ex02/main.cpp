@@ -1,10 +1,13 @@
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 #include "Bureaucrat.hpp"
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
 
 int main(void) {
+  std::srand(std::time(NULL));
   {
     AForm *form = new ShrubberyCreationForm("here");
     Bureaucrat hans("Hans", 137);
