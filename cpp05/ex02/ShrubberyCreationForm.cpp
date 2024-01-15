@@ -30,7 +30,7 @@ ShrubberyCreationForm::~ShrubberyCreationForm() {}
 
 void ShrubberyCreationForm::_execForm() const {
   std::ofstream out;
-  out.open(getTarget() + "_shrubbery");
+  out.open((getTarget() + "_shrubbery").c_str());
   out << TREE << std::endl;
   out.close();
 }

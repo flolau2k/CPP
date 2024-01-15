@@ -4,7 +4,7 @@
 AForm::AForm(const std::string &name /* = "Random Form" */,
              int min_grade_sign /* = 100 */, int min_grade_exec /* = 70 */,
              const std::string &target /* = "home" */)
-    : _name(name), _signed(false), _target(target), _min_grade_sign(min_grade_sign),
+    : _name(name), _target(target), _signed(false), _min_grade_sign(min_grade_sign),
       _min_grade_exec(min_grade_exec) {
   std::cout << "creating Form with the following args: name: " << name 
     << "\nminimum sign grade: " << min_grade_sign
