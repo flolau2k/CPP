@@ -7,7 +7,7 @@ Bureaucrat::Bureaucrat(
     : name(new_name) {
   if (new_grade > 150)
     throw(GradeTooLowException());
-  if (new_grade < 0)
+  if (new_grade < 1)
     throw(GradeTooHighException());
   grade = new_grade;
 }

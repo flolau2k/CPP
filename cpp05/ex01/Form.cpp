@@ -4,8 +4,11 @@
 Form::Form(const std::string &name /* = "Random Form" */,
            int min_grade_sign /* = 100 */, int min_grade_exec /* = 70 */)
     : _name(name), _min_grade_sign(min_grade_sign),
-      _min_grade_exec(min_grade_exec) {
-  _signed = false;
+      _min_grade_exec(min_grade_exec), _signed(false) {
+  if (min_grade_exec > 150 || min_grade_sign > 150)
+    throw (GradeTooLowException());
+  else if (min_grade_exec < 1 || min_grade_sign < 1)
+    throw (GradeTooHighException());
 }
 
 Form::Form(const Form &cpy)
