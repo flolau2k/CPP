@@ -56,7 +56,7 @@ void AForm::beSigned(const Bureaucrat &B) {
 }
 
 std::ostream &operator<<(std::ostream &out, const AForm &B) {
-  out << "Form " << B.getName() << ", target: " << B.getTarget() << "\n is ";
+  out << "Form " << B.getName() << ", target: " << B.getTarget() << "\nis ";
   if (!B.getSigned())
     out << "not ";
   return out << "signed. \nMinimum grade to sign: " << B.getMinGradeSign()
