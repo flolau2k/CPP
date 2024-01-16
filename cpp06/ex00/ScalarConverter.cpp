@@ -3,19 +3,20 @@
 #include <sstream>
 #include <iomanip>
 #include <limits>
+#include <cmath>
 
 const char *ScalarConverter::NotSpecialTypeException::what() const throw() {
   return "Input is not of special Type!";
 }
 
 type_t ScalarConverter::check_special(const std::string &s) {
-  static const std::string specials_float[] = {"-inff", "+inff", "nanf"};
-  static const std::string specials_double[] = {"-inf", "+inf", "nan"};
-  for (int i = 0; i < 3; ++i) {
+  static const std::string specials_float[] = {"-inff", "+inff", "inff", "nanf"};
+  static const std::string specials_double[] = {"-inf", "+inf", "inf", "nan"};
+  for (int i = 0; i < 4; ++i) {
     if (s == specials_float[i])
       return S_FLOAT;
   }
-  for (int i = 0; i < 3; ++i) {
+  for (int i = 0; i < 4; ++i) {
     if (s == specials_double[i])
       return S_DOUBLE;
   }
@@ -100,8 +101,11 @@ void ScalarConverter::handle_float(const std::string &s) {
     std::cout << "char: '" << c << "'\n";
   else
     std::cout << "char: Non displayable\n";
-  std::cout << "int: " << i << "\n"
-    << "float: " << f << "f\n"
+  if (i < std::numeric_limits<int>::min() || i > std::numeric_limits<int>::max())
+    std::cout << "int: overflow\n";
+  else
+    std::cout << "int: " << i << "\n";
+  std::cout << "float: " << f << "f\n"
     << "double: " << d << std::endl;
 }
 
@@ -119,8 +123,12 @@ void ScalarConverter::handle_double(const std::string &s) {
     std::cout << "char: '" << c << "'\n";
   else
     std::cout << "char: Non displayable\n";
-  std::cout << "int: " << i << "\n"
-    << "float: " << f << "f\n"
+  if (i < std::numeric_limits<int>::min() || i > std::numeric_limits<int>::max())
+    std::cout << "int: overflow\n";
+  else
+    std::cout << "int: " << i << "\n";
+  if ((d % 1) == 0)
+  std::cout << "float: " << f << "f\n"
     << "double: " << d << std::endl;
 }
 
