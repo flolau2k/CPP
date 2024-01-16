@@ -61,7 +61,7 @@ void ScalarConverter::handle_char(const std::string &s) {
   d = static_cast<double>(c);
   std::cout << "char: '" << c << "'\n"
     << "int: " << i << "\n"
-    << "float: " << f << "f\n"
+    << std::fixed << std::setprecision(1) << "float: " << f << "f\n"
     << "double: " << d << std::endl;
 }
 
@@ -83,7 +83,7 @@ void ScalarConverter::handle_int(const std::string &s) {
     std::cout << "int: overflow\n";
   else
     std::cout << "int: " << i << "\n";
-  std::cout << "float: " << f << "f\n"
+  std::cout << std::fixed << std::setprecision(1) << "float: " << f << "f\n"
     << "double: " << d << std::endl;
 }
 
@@ -105,6 +105,8 @@ void ScalarConverter::handle_float(const std::string &s) {
     std::cout << "int: overflow\n";
   else
     std::cout << "int: " << i << "\n";
+  if (fmod(d, 1.0) == 0)
+    std::cout << std::fixed << std::setprecision(1);
   std::cout << "float: " << f << "f\n"
     << "double: " << d << std::endl;
 }
@@ -127,7 +129,8 @@ void ScalarConverter::handle_double(const std::string &s) {
     std::cout << "int: overflow\n";
   else
     std::cout << "int: " << i << "\n";
-  if ((d % 1) == 0)
+  if (fmod(d, 1.0) == 0)
+    std::cout << std::fixed << std::setprecision(1);
   std::cout << "float: " << f << "f\n"
     << "double: " << d << std::endl;
 }
