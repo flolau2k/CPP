@@ -6,7 +6,7 @@ CFLAGS =	-g -Wall -Wextra -Werror -std=c++98
 OBJDIR =	obj
 
 FILES =			main.cpp
-HEADER_F =	easyfind.hpp easyfind.hpp
+HEADER_F =	easyfind.hpp
 
 SRC =		$(FILES)
 OBJ =		$(addprefix $(OBJDIR)/, $(FILES:%.cpp=%.o))
