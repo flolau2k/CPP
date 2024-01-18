@@ -92,7 +92,8 @@
     "cinttypes": "cpp",
     "valarray": "cpp",
     "variant": "cpp",
-    "*.tpp": "cpp"
+    "*.tpp": "cpp",
+    "valuestack": "cpp"
   },
 	"C_Cpp.clang_format_fallbackStyle": "LLVM",
 	"editor.tabSize": 2,
