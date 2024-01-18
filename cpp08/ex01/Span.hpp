@@ -13,6 +13,16 @@ public:
   ~Span();
 
   void addNumber(int number);
+  
+  template <typename Iter>
+  void addRange(Iter first, Iter last) {
+    Iter it = first;
+    while (it != last) {
+      this->addNumber(*it);
+      it++;
+    }
+  }
+  
   size_t shortestSpan();
   size_t longestSpan();
 
