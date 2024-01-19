@@ -1,4 +1,4 @@
-#include "My_CSV.hpp"
+#include "BitcoinExchange.hpp"
 #include <fstream>
 #include <iostream>
 #include <map>
@@ -6,8 +6,8 @@
 #include <string>
 
 int main(void) {
-  My_CSV csv("data.csv");
-  const std::map<std::string, double> data = csv.get_map();
+  BitcoinExchange btc("data.csv");
+  const std::map<std::string, double> data = btc.get_map();
 
   typedef std::map<std::string, double>::const_iterator iter;
   for (iter it = data.begin(); it != data.end(); ++it) {
