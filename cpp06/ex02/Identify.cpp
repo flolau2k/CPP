@@ -16,23 +16,30 @@ Base *generate(void) {
 void identify(Base *p) {
   if (dynamic_cast<A*>(p) != NULL)
     std::cout << "A!" << std::endl;
-  if (dynamic_cast<B*>(p) != NULL)
+  else if (dynamic_cast<B*>(p) != NULL)
     std::cout << "B!" << std::endl;
-  if (dynamic_cast<C*>(p) != NULL)
+  else if (dynamic_cast<C*>(p) != NULL)
     std::cout << "C!" << std::endl;
+  else
+    std::cout << "None of A, B or C!" << std::endl;
 }
 
 void identify(Base &p) {
   try {
     (void)dynamic_cast<A&>(p);
     std::cout << "A!" << std::endl;
+    return;
   } catch (std::exception &e) {}
   try {
     (void)dynamic_cast<B&>(p);
     std::cout << "B!" << std::endl;
+    return;
   } catch (std::exception &e) {}
   try {
     (void)dynamic_cast<C&>(p);
     std::cout << "C!" << std::endl;
+    return;
   } catch (std::exception &e) {}
+  std::cout << "None of A, B or C!" << std::endl;
+  return;
 }
