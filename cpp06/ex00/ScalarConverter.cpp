@@ -142,14 +142,12 @@ void ScalarConverter::handle_type(type_t &type, const std::string &s) {
       handle_char(s);
       break;
     case INT:
-      // std::cout << "INT!" << std::endl;
       handle_int(s);
       break;
     case FLOAT:
       handle_float(s);
       break;
     case S_FLOAT:
-      // std::cout << "S_FLOAT!" << std::endl;
       ns = s.substr(0, s.length() - 1);
       std::cout << "char: impossible\n"
         << "int: impossible\n"
@@ -160,7 +158,6 @@ void ScalarConverter::handle_type(type_t &type, const std::string &s) {
       handle_double(s);
       break;
     case S_DOUBLE:
-      // std::cout << "S_DOUBLE!" << std::endl;
       std::cout << "char: impossible\n"
         << "int: impossible\n"
         << "float: " << s << "f\n"
