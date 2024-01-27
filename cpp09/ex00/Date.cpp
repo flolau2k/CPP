@@ -1,4 +1,5 @@
 #include "Date.hpp"
+#include <iostream>
 #include <sstream>
 
 int Date::to_int(const std::string &arg) const {
@@ -30,6 +31,8 @@ Date::Date(const std::string &date_s /*= "1970-01-01"*/) {
     }
     ++count;
   }
+  if (!validate())
+    throw InvalidDateException();
 }
 
 Date::Date(const Date &cpy) { *this = cpy; }
@@ -64,17 +67,54 @@ bool Date::validate() const {
   int month = 1 << (_month - 1);
   if (_month == 2) {
     if (check_leap_year()) {
-      if (_day < 1 || _day > 29) return false;
+      if (_day < 1 || _day > 29)
+        return false;
+    } else {
+      if (_day < 1 || _day > 28)
+        return false;
     }
-    else {
-      if (_day < 1 || _day > 28) return false;
-    }
-  }
-  else if (month & _30dayMonths) {
-    if (_day > 30 || _day < 1) return false;
-  }
-  else {
-    if (_day > 31 || _day < 1) return false;
+  } else if (month & _30dayMonths) {
+    if (_day > 30 || _day < 1)
+      return false;
+  } else {
+    if (_day > 31 || _day < 1)
+      return false;
   }
   return true;
+}
+
+bool Date::operator<(const Date &date) const {
+  if (_year < date._year) return true;
+  else if (_year > date._year) return false;
+  if (_month < date._month) return true;
+  else if (_month > date._month) return false;
+  if (_day < date._day) return true;
+  return false;
+}
+
+bool Date::operator>(const Date &date) const {
+  return date < *this;
+}
+
+bool Date::operator<=(const Date &date) const {
+  return !(*this > date);
+}
+
+bool Date::operator>=(const Date &date) const {
+  return !(*this < date);
+}
+
+bool Date::operator==(const Date &date) const {
+  if (_year == date._year && _month == date._month && _day == date._day)
+    return true;
+  return false;
+}
+
+bool Date::operator!=(const Date &date) const {
+  return !(*this == date);
+}
+
+std::ostream &operator<<(std::ostream &out, const Date &date) {
+  std::cout << "Date: " << date.get_year() << "-" << date.get_month() << "-"
+            << date.get_day() << std::endl;
 }

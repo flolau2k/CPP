@@ -10,12 +10,23 @@ public:
   Date &operator=(const Date &other);
   ~Date();
 
+  bool operator>(const Date &date) const;
+  bool operator<(const Date &date) const;
+  bool operator>=(const Date &date) const;
+  bool operator<=(const Date &date) const;
+  bool operator==(const Date &date) const;
+  bool operator!=(const Date &date) const;
+
   bool validate() const;
 
   class InvalidDateException : public std::exception {
   public:
     const char *what() const throw();
   };
+
+  int get_year() const;
+  int get_month() const;
+  int get_day() const;
 
 private:
   int _year;
@@ -26,5 +37,7 @@ private:
   int to_int(const std::string &arg) const;
   bool check_leap_year() const;
 };
+
+std::ostream &operator<<(std::ostream &out, const Date &date);
 
 #endif // DATE_HPP
