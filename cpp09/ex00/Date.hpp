@@ -22,6 +22,9 @@ private:
   int _month;
   int _day;
 
+  static const int _30dayMonths = (1 << 3) | (1 << 5) | (1 << 8) | (1 << 10);
+  int to_int(const std::string &arg) const;
+  bool check_leap_year() const;
 };
 
 #endif // DATE_HPP
