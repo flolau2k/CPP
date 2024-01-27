@@ -5,8 +5,8 @@ CFLAGS =	-g -Wall -Wextra -Werror -std=c++98
 
 OBJDIR =	obj
 
-FILES =			main.cpp BitcoinExchange.cpp
-HEADER_F =	BitcoinExchange.hpp
+FILES =			main.cpp BitcoinExchange.cpp Date.cpp
+HEADER_F =	BitcoinExchange.hpp Date.hpp
 
 SRC =		$(FILES)
 OBJ =		$(addprefix $(OBJDIR)/, $(FILES:%.cpp=%.o))

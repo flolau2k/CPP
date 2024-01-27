@@ -114,7 +114,19 @@ bool Date::operator!=(const Date &date) const {
   return !(*this == date);
 }
 
+int Date::get_day() const {
+  return _day;
+}
+
+int Date::get_month() const {
+  return _month;
+}
+
+int Date::get_year() const {
+  return _year;
+}
+
 std::ostream &operator<<(std::ostream &out, const Date &date) {
-  std::cout << "Date: " << date.get_year() << "-" << date.get_month() << "-"
-            << date.get_day() << std::endl;
+  return out << date.get_year() << "-" << date.get_month() << "-"
+            << date.get_day();
 }

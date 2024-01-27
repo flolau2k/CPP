@@ -3,6 +3,7 @@
 
 #include <string>
 #include <map>
+#include "Date.hpp"
 
 class BitcoinExchange {
 public:
@@ -12,7 +13,7 @@ public:
   BitcoinExchange &operator=(const BitcoinExchange &cpy);
   ~BitcoinExchange();
   
-  const std::map<std::string, double> &get_map() const;
+  const std::map<Date, double> &get_map() const;
   void read_csv(const std::string &filename);
 
   class NoDataException : public std::exception {
@@ -26,10 +27,9 @@ private:
     const char *what() const throw();
   };
 
-  void check_date(const std::string &date) const;
   double stod(std::string &s);
 
-  std::map<std::string, double> _data;
+  std::map<Date, double> _data;
 };
 
 #endif // BITCOINEXCHANGE_HPP
