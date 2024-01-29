@@ -101,6 +101,8 @@ void BitcoinExchange::read_input(const std::string &filename) {
   BitcoinExchange::DataPoint curr_entry;
   BitcoinExchange::DateValueMap::iterator data_it;
 
+  if (_data.size() <= 0)
+    throw NoDataException();
   if (!ifs.is_open())
     throw OpenFileException();
   if (!ifs.good())
