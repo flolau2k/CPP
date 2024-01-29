@@ -8,6 +8,7 @@
 class BitcoinExchange {
 public:
   typedef std::map<Date, double> DateValueMap;
+  typedef std::pair<Date, double> DataPoint;
 
   BitcoinExchange();
   BitcoinExchange(const BitcoinExchange &other);
@@ -32,23 +33,23 @@ public:
     const char *what() const throw();
   };
 
-  class FileOpenException : public std::exception {
+  class OpenFileException : public std::exception {
   public:
     const char *what() const throw();
   };
-  
+
 private:
   class CSVParsingException : public std::exception {
   public:
     const char *what() const throw();
   };
 
-
   double stod(std::string &s) const;
   DateValueMap read_file(std::ifstream &ifile, const std::string &delim) const;
+  DataPoint getPairFromLine(const std::string &line,
+                            const std::string &delim) const;
 
   DateValueMap _data;
-  DateValueMap _input;
 };
 
 #endif // BITCOINEXCHANGE_HPP

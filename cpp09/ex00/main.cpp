@@ -7,7 +7,7 @@
 #include <string>
 
 int main(int argc, char **argv) {
-  const std::string data_file = "test.csv";
+  const std::string data_file = "data.csv";
 
   if (argc != 2) {
     std::cerr << "Wrong number of args; no input file given!" << std::endl;
