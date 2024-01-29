@@ -128,7 +128,7 @@ void BitcoinExchange::read_input(const std::string &filename) {
     } else  if (curr_entry.first < data_it->first) {
       data_it--;
     }
-    if (curr_entry.second > std::numeric_limits<int>::max()) {
+    if (curr_entry.second > _max_value) {
       std::cerr << "Error: too large a number." << std::endl;
       continue;
     }

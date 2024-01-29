@@ -1,4 +1,4 @@
-NAME =		a.out
+NAME =		btc
 
 CC =		c++
 CFLAGS =	-g -Wall -Wextra -Werror -std=c++98

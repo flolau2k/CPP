@@ -50,6 +50,7 @@ private:
                             const std::string &delim) const;
 
   DateValueMap _data;
+  const static int _max_value = 1000;
 };
 
 #endif // BITCOINEXCHANGE_HPP
