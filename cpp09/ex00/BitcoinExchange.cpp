@@ -1,7 +1,7 @@
 #include "BitcoinExchange.hpp"
 #include <fstream>
-#include <sstream>
 #include <iostream>
+#include <sstream>
 
 const char *BitcoinExchange::CSVParsingException::what() const throw() {
   return "csv parsing failed!";
@@ -11,65 +11,84 @@ const char *BitcoinExchange::NoDataException::what() const throw() {
   return "no data stored!";
 }
 
-double BitcoinExchange::stod(std::string &s) {
+const char *BitcoinExchange::InvalidDataException::what() const throw() {
+  return "Input Data is invalid!";
+}
+
+const char *BitcoinExchange::BadFileException::what() const throw() {
+  return "Bad File!";
+}
+
+const char *BitcoinExchange::FileOpenException::what() const throw() {
+  return "could not open file!";
+}
+
+double BitcoinExchange::stod(std::string &s) const {
   std::istringstream iss(s);
   double val;
   iss >> val;
-  if (iss.fail()) throw CSVParsingException();
+  if (iss.fail())
+    throw CSVParsingException();
   return val;
 }
 
-void BitcoinExchange::read_csv(const std::string &filename) {
-  std::ifstream data_f(filename.c_str());
-  std::pair<Date, double> curr_set;
-  std::string curr_val_s;
-  double curr_val;
+BitcoinExchange::DateValueMap
+BitcoinExchange::read_file(std::ifstream &ifile, const std::string &delim) const {
   std::string curr_line;
   std::string curr_date_s;
+  std::string curr_val_s;
   Date curr_date;
+  double curr_val;
+  std::pair<Date, double> curr_set;
+  BitcoinExchange::DateValueMap ret;
 
-  if (data_f.is_open()) {
-    while (std::getline(data_f, curr_line)) {
-      if (curr_line == "date,exchange_rate") continue;
-      curr_date_s = curr_line.substr(0, curr_line.find(","));
-      try {
-        curr_date = Date(curr_date_s);
-      } catch (Date::InvalidDateException &e) {
-        std::cerr << "invalid date found: " << curr_date_s << std::endl;
-        continue;
-      }
-      curr_val_s = curr_line.substr(curr_line.find(",") + 1);
-      try {
-        curr_val = stod(curr_val_s);
-      } catch (CSVParsingException &e) {
-        std::cerr << "invalid value found: " << curr_val_s << std::endl;
-      }
-      curr_set = std::pair<Date, double>(curr_date, curr_val);
-      _data.insert(curr_set);
+  if (!ifile.good())
+    throw BadFileException();
+  while (std::getline(ifile, curr_line)) {
+    if (curr_line.find("date") != std::string::npos)
+      continue;
+    curr_date_s = curr_line.substr(0, curr_line.find(delim));
+    try {
+      curr_date = Date(curr_date_s);
+    } catch (Date::InvalidDateException &e) {
+      std::cerr << "Error: invalid date found: " << curr_date_s << std::endl;
+      continue;
     }
+    curr_val_s = curr_line.substr(curr_line.find(delim) + 1);
+    try {
+      curr_val = stod(curr_val_s);
+    } catch (CSVParsingException &e) {
+      std::cerr << "Error: invalid value found: " << curr_val_s << std::endl;
+      continue;
+    }
+    curr_set = std::pair<Date, double>(curr_date, curr_val);
+    ret.insert(curr_set);
   }
-  data_f.close();
+  ifile.close();
+  return ret;
 }
 
-BitcoinExchange::BitcoinExchange(const std::string &filename) {
-  read_csv(filename);
+void BitcoinExchange::read_data(const std::string &filename) {
+  std::ifstream ifs(filename.c_str());
+  if (!ifs.is_open()) throw FileOpenException();
+  _data = read_file(ifs, ",");
+}
+
+void BitcoinExchange::read_input(const std::string &filename) {
+  std::ifstream ifs(filename.c_str());
+  if (!ifs.is_open()) throw FileOpenException();
+  _input = read_file(ifs, "|");
 }
 
 BitcoinExchange::BitcoinExchange() {}
 
 BitcoinExchange::~BitcoinExchange() {}
 
-BitcoinExchange::BitcoinExchange(const BitcoinExchange &cpy) {
-  *this = cpy;
-}
+BitcoinExchange::BitcoinExchange(const BitcoinExchange &cpy) { *this = cpy; }
 
 BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &other) {
   if (this != &other) {
     _data = other._data;
   }
   return *this;
-}
-
-const std::map<Date, double> &BitcoinExchange::get_map() const {
-  return _data;
 }
