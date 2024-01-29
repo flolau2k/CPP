@@ -29,7 +29,7 @@ double BitcoinExchange::stod(std::string &s) const {
   double val;
   iss >> val;
   if (iss.fail())
-    throw CSVParsingException();
+    throw BitcoinExchange::CSVParsingException();
   return val;
 }
 
@@ -52,7 +52,7 @@ BitcoinExchange::getPairFromLine(const std::string &line,
   val_s = line.substr(line.find(delim) + 1);
   try {
     val = stod(val_s);
-  } catch (CSVParsingException &e) {
+  } catch (BitcoinExchange::CSVParsingException &e) {
     std::cerr << "Error: invalid value found: " << val_s << std::endl;
     throw InvalidDataException();
   }
