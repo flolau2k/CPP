@@ -46,11 +46,11 @@ void RPN::_plus() {
 void RPN::_minus() {
   if (_stack.size() != 2)
     throw std::exception();
-  int val = _stack.top();
+  int val1 = _stack.top();
   _stack.pop();
-  val -= _stack.top();
+  int val2 = _stack.top();
   _stack.pop();
-  _stack.push(val);
+  _stack.push(val2 - val1);
 }
 
 void RPN::_multiply() {
@@ -66,11 +66,11 @@ void RPN::_multiply() {
 void RPN::_divide() {
   if (_stack.size() != 2)
     throw std::exception();
-  int val = _stack.top();
+  int val1 = _stack.top();
   _stack.pop();
-  val /= _stack.top();
+  int val2 = _stack.top();
   _stack.pop();
-  _stack.push(val);
+  _stack.push(val2 / val1);
 }
 
 int RPN::calculate(const std::string &arg) {
