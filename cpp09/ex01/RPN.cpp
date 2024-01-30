@@ -7,7 +7,7 @@ RPN::RPN(){}
 
 RPN::~RPN(){}
 
-RPN::token_t RPN::get_type(std::string &tok) const {
+RPN::token_t RPN::get_type(std::string &tok) {
   if (tok == "+")
     return RPN::PLUS;
   if (tok == "-")
@@ -26,8 +26,9 @@ RPN::token_t RPN::get_type(std::string &tok) const {
 
 void RPN::push_val(std::string &tok) {
   std::istringstream iss(tok);
-  int val;
-  if (!iss >> val)
+  int val = 0;
+  iss >> val;
+  if (iss.fail())
     throw std::exception();
   _stack.push(val);
 }
@@ -35,10 +36,44 @@ void RPN::push_val(std::string &tok) {
 void RPN::_plus() {
   if (_stack.size() != 2)
     throw std::exception();
-  
+  int val = _stack.top();
+  _stack.pop();
+  val += _stack.top();
+  _stack.pop();
+  _stack.push(val);
 }
 
-int RPN::calculate(std::string &arg) const {
+void RPN::_minus() {
+  if (_stack.size() != 2)
+    throw std::exception();
+  int val = _stack.top();
+  _stack.pop();
+  val -= _stack.top();
+  _stack.pop();
+  _stack.push(val);
+}
+
+void RPN::_multiply() {
+  if (_stack.size() != 2)
+    throw std::exception();
+  int val = _stack.top();
+  _stack.pop();
+  val *= _stack.top();
+  _stack.pop();
+  _stack.push(val);
+}
+
+void RPN::_divide() {
+  if (_stack.size() != 2)
+    throw std::exception();
+  int val = _stack.top();
+  _stack.pop();
+  val /= _stack.top();
+  _stack.pop();
+  _stack.push(val);
+}
+
+int RPN::calculate(const std::string &arg) {
   RPN rpn;
   std::string token;
   std::istringstream iss(arg);
@@ -49,17 +84,22 @@ int RPN::calculate(std::string &arg) const {
     switch (type) {
       case ARG:
         rpn.push_val(token);
+        break;
       case PLUS:
         rpn._plus();
+        break;
       case MINUS:
         rpn._minus();
+        break;
       case MULT:
         rpn._multiply();
+        break;
       case DIV:
         rpn._divide();
+        break;
       case ERROR:
         throw std::exception();
     }
   }
-  return _stack.top();
+  return rpn._stack.top();
 }

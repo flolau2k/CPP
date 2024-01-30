@@ -7,6 +7,10 @@ int main(int argc, char **argv) {
     return 1;
   }
 
-  std::cout << argv[1] << std::endl;
+  try {
+    std::cout << RPN::calculate(argv[1]) << std::endl;
+  } catch (std::exception &e) {
+    std::cerr << e.what() << std::endl;
+  }
   return 0;
 }
