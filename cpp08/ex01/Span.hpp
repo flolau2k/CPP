@@ -26,7 +26,7 @@ public:
   size_t shortestSpan();
   size_t longestSpan();
 
-  class NothingStoredException : public std::exception {
+  class NotEnoughValuesStoredException : public std::exception {
   public:
     const char *what() const throw();
   };

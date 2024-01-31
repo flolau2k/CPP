@@ -1,8 +1,8 @@
 #include "Span.hpp"
 #include <limits>
 
-const char *Span::NothingStoredException::what() const throw() {
-  return "Nothing is yet stored in this Span!";
+const char *Span::NotEnoughValuesStoredException::what() const throw() {
+  return "Not Enough Values stored to calculate the Span!";
 }
 
 const char *Span::NoSpaceLeftException::what() const throw() {
@@ -23,6 +23,7 @@ Span::~Span() {}
 Span &Span::operator=(const Span &other) {
   if (this != &other) {
     _vec = other._vec;
+    _size = other._size;
   }
   return *this;
 }
@@ -35,6 +36,8 @@ void Span::addNumber(int number) {
 }
 
 size_t Span::longestSpan() {
+  if (_vec.size() < 2)
+    throw NotEnoughValuesStoredException();
   int highest = std::numeric_limits<int>::min();
   int lowest = std::numeric_limits<int>::max();
   for (std::vector<int>::iterator it = _vec.begin(); it != _vec.end(); ++it) {
@@ -45,6 +48,8 @@ size_t Span::longestSpan() {
 }
 
 size_t Span::shortestSpan() {
+  if (_vec.size() < 2)
+    throw NotEnoughValuesStoredException();
   size_t shortestSpan = std::numeric_limits<int>::max();
   for (std::vector<int>::iterator it = _vec.begin(); it != _vec.end(); ++it) {
     for (std::vector<int>::iterator it2 = it + 1; it2 != _vec.end(); ++it2) {
