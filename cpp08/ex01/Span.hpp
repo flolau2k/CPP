@@ -12,17 +12,13 @@ public:
   Span &operator=(const Span &other);
   ~Span();
 
-  void addNumber(int number);
-  
-  template <typename Iter>
-  void addRange(Iter first, Iter last) {
-    Iter it = first;
-    while (it != last) {
-      this->addNumber(*it);
-      it++;
-    }
+  template<typename iter>
+  void insert(iter begin, iter end) {
+    _vec.insert(_vec.end(), begin, end);
   }
-  
+  void addNumber(int number);
+  std::vector<int> get_vec() const;
+
   unsigned int shortestSpan();
   unsigned int longestSpan();
 

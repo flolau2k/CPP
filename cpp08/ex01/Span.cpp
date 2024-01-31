@@ -35,6 +35,10 @@ void Span::addNumber(int number) {
     throw NoSpaceLeftException();
 }
 
+std::vector<int> Span::get_vec() const {
+  return _vec;
+}
+
 unsigned int Span::longestSpan() {
   if (_vec.size() < 2)
     throw NotEnoughValuesStoredException();

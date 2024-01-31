@@ -21,9 +21,15 @@ int main(int argc, char **argv) {
     span.addNumber(val);
   }
 
+  std::vector<int> vec = span.get_vec();
+  Span sp2(vec.size());
+  sp2.insert(vec.begin(), vec.end());
+
   try {
     std::cout << "Longest Span: " << span.longestSpan() << std::endl;
     std::cout << "Shortest Span: " << span.shortestSpan() << std::endl;
+    std::cout << "Longest Span: " << sp2.longestSpan() << std::endl;
+    std::cout << "Shortest Span: " << sp2.shortestSpan() << std::endl;
   } catch (std::exception &e) {
     std::cerr << e.what() << std::endl;
     return 1;
