@@ -34,6 +34,8 @@ void RPN::push_val(std::string &tok) {
 }
 
 void RPN::_plus() {
+  if (_stack.size() < 2)
+    throw std::exception();
   int val = _stack.top();
   _stack.pop();
   val += _stack.top();
@@ -42,6 +44,8 @@ void RPN::_plus() {
 }
 
 void RPN::_minus() {
+  if (_stack.size() < 2)
+    throw std::exception();
   int val1 = _stack.top();
   _stack.pop();
   int val2 = _stack.top();
@@ -50,6 +54,8 @@ void RPN::_minus() {
 }
 
 void RPN::_multiply() {
+  if (_stack.size() < 2)
+    throw std::exception();
   int val = _stack.top();
   _stack.pop();
   val *= _stack.top();
@@ -58,6 +64,8 @@ void RPN::_multiply() {
 }
 
 void RPN::_divide() {
+  if (_stack.size() < 2)
+    throw std::exception();
   int val1 = _stack.top();
   _stack.pop();
   int val2 = _stack.top();
