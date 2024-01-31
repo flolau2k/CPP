@@ -50,7 +50,7 @@ size_t Span::longestSpan() {
 size_t Span::shortestSpan() {
   if (_vec.size() < 2)
     throw NotEnoughValuesStoredException();
-  size_t shortestSpan = std::numeric_limits<int>::max();
+  int shortestSpan = std::numeric_limits<int>::max();
   for (std::vector<int>::iterator it = _vec.begin(); it != _vec.end(); ++it) {
     for (std::vector<int>::iterator it2 = it + 1; it2 != _vec.end(); ++it2) {
       if (abs(*it - *it2) < shortestSpan) shortestSpan = abs(*it - *it2);
