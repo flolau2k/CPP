@@ -12,4 +12,10 @@ int main(void) {
   std::cout << "easyfind vec 5: " << ::easyfind(vec, 5) << std::endl;
   std::cout << "easyfind deq 5: " << ::easyfind(deq, 5) << std::endl;
   std::cout << "easyfind lst 5: " << ::easyfind(lst, 5) << std::endl;
+
+  std::cout << "test error behaviour..." << std::endl;
+  std::cout << "easyfind vec 10: " << ::easyfind(vec, 10) << std::endl;
+  std::cout << "easyfind deq 10: " << ::easyfind(deq, 10) << std::endl;
+  std::cout << "easyfind lst 10: " << ::easyfind(lst, 10) << std::endl;
+
 }
