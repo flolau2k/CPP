@@ -23,8 +23,8 @@ public:
     }
   }
   
-  size_t shortestSpan();
-  size_t longestSpan();
+  unsigned int shortestSpan();
+  unsigned int longestSpan();
 
   class NotEnoughValuesStoredException : public std::exception {
   public:

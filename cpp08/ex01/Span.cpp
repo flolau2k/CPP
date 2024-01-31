@@ -35,7 +35,7 @@ void Span::addNumber(int number) {
     throw NoSpaceLeftException();
 }
 
-size_t Span::longestSpan() {
+unsigned int Span::longestSpan() {
   if (_vec.size() < 2)
     throw NotEnoughValuesStoredException();
   int highest = std::numeric_limits<int>::min();
@@ -44,10 +44,10 @@ size_t Span::longestSpan() {
     if (*it > highest) highest = *it;
     if (*it < lowest) lowest = *it;
   }
-  return static_cast<size_t>(highest - lowest);
+  return static_cast<unsigned int>(highest - lowest);
 }
 
-size_t Span::shortestSpan() {
+unsigned int Span::shortestSpan() {
   if (_vec.size() < 2)
     throw NotEnoughValuesStoredException();
   int shortestSpan = std::numeric_limits<int>::max();
@@ -56,5 +56,5 @@ size_t Span::shortestSpan() {
       if (abs(*it - *it2) < shortestSpan) shortestSpan = abs(*it - *it2);
     }
   }
-  return shortestSpan;
+  return static_cast<unsigned int>(shortestSpan);
 }
