@@ -6,10 +6,12 @@ CFLAGS =	-g -Wall -Wextra -Werror -std=c++98
 OBJDIR =	obj
 
 FILES =			main.cpp PmergeMe.cpp
-HEADER_F =	PmergeMe.hpp
+FILES_C =		time.c
+HEADER_F =	PmergeMe.hpp time.h
 
 SRC =		$(FILES)
 OBJ =		$(addprefix $(OBJDIR)/, $(FILES:%.cpp=%.o))
+OBJ +=	$(addprefix $(OBJDIR)/, $(FILES_C:%.c=%.o))
 HEADERS =	$(HEADER_F)
 
 all: $(NAME)
@@ -19,6 +21,9 @@ $(NAME): $(OBJ)
 	@echo "built $(NAME)"
 
 $(OBJDIR)/%.o: %.cpp $(HEADERS) | $(OBJDIR)
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+$(OBJDIR)/%.o: %.c $(HEADERS) | $(OBJDIR)
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 $(OBJDIR):
