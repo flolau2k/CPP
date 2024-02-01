@@ -2,7 +2,8 @@
 #include <vector>
 #include <deque>
 #include <sstream>
-#include "time.h"
+#include <time.h>
+#include <unistd.h>
 
 int main(int argc, char **argv) {
   if (argc < 2) {
@@ -26,11 +27,11 @@ int main(int argc, char **argv) {
   }
 
   // timer
-  size_t start = get_microseconds();
+  clock_t t = clock();
   // vector
   usleep(10);
   // vec time
-  std::cout << "time elapsed: " << (get_microseconds() - start) << std::endl;
+  std::cout << "time elapsed: " << (clock() - t) << std::endl;
 
   // timer
   // deq
