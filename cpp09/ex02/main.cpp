@@ -29,9 +29,9 @@ int main(int argc, char **argv) {
   // timer
   clock_t t = clock();
   // vector
-  usleep(10);
   // vec time
-  std::cout << "time elapsed: " << (clock() - t) << std::endl;
+  t = clock() - t;
+  std::cout << "time elapsed: " << t << std::endl;
 
   // timer
   // deq
