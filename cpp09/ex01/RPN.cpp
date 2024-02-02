@@ -101,7 +101,7 @@ double RPN::calculate(const std::string &arg) {
         throw std::exception();
     }
   }
-  if (rpn._stack.size() > 1)
+  if (rpn._stack.size() != 1)
     throw std::exception();
   return rpn._stack.top();
 }
