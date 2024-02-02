@@ -4,6 +4,7 @@
 #include <sstream>
 #include <time.h>
 #include <unistd.h>
+#include "PmergeMe.hpp"
 
 int main(int argc, char **argv) {
   if (argc < 2) {
@@ -28,14 +29,21 @@ int main(int argc, char **argv) {
 
   // timer
   clock_t t = clock();
-  // vector
+  // vec
+  PmergeMe::recursive_sort(vec.begin(), vec.end() - 1);
   // vec time
   t = clock() - t;
   std::cout << "time elapsed: " << t << std::endl;
+  PmergeMe::print(vec);
 
   // timer
+  t = clock();
   // deq
+  PmergeMe::recursive_sort(deq.begin(), deq.end() - 1);
   // deq time
+  t = clock() - t;
+  std::cout << "time elapsed: " << t << std::endl;
+  PmergeMe::print(deq);
   
   return 0;
 }
