@@ -5,7 +5,7 @@
 
 class RPN {
 public:
-  static int calculate(const std::string &arg);
+  static double calculate(const std::string &arg);
 
 private:
   RPN();
@@ -22,7 +22,7 @@ private:
   void _divide();
   static token_t get_type(std::string &tok);
 
-  std::stack<int> _stack;
+  std::stack<double> _stack;
 
 };
 
