@@ -8,17 +8,31 @@ class PmergeMe {
 public:
 
   template <typename iter>
-  static void recursive_sort(iter begin, iter end) {
-    int distance = std::distance(begin, end) == 1;
+  static void recursive_sort(iter begin, iter _end) {
+    iter end = _end;
+    std::cout << "begin : end = " << *begin << " : " << *end << std::endl;
+    int distance = std::distance(begin, end);
+    std::cout << "distance: " << distance << std::endl;
+    // need to do this only on the first occurence.
+    if (distance % 2 == 0) {
+      --end;
+    }
     switch (distance) {
       case 1:
+        std::cout << "2 elm: " << *begin << " : " << *end << std::endl;
         if (*begin > *end) std::swap(*begin, *end);
+        // if (*begin > *end) std::cout << "would swap..." << std::endl;
         // fallthrough
       case 0:
+        std::cout << "return" << std::endl;
         return;
+      // case 2:
+      //   std::cout << "dist 2" << std::endl;
+
       default:
-        recursive_sort(begin, begin + std::distance(begin, end) / 2);
-        recursive_sort(begin + std::distance(begin, end) / 2, end);
+        std::cout << "recursion ... " << std::endl;
+        recursive_sort(begin, begin + distance / 2);
+        recursive_sort(begin + distance / 2 , end);
     }
   }
 
