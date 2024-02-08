@@ -5,8 +5,8 @@ CFLAGS =	-g -Wall -Wextra -Werror -std=c++98
 
 OBJDIR =	obj
 
-FILES =			main.cpp PmergeMe.cpp
-HEADER_F =	PmergeMe.hpp
+FILES =			main.cpp
+HEADER_F =	PmergeMe.hpp PmergeMe.tpp
 
 SRC =		$(FILES)
 OBJ =		$(addprefix $(OBJDIR)/, $(FILES:%.cpp=%.o))

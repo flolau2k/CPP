@@ -19,7 +19,7 @@ int main(int argc, char **argv) {
     std::istringstream iss(argv[i]);
     int val;
     iss >> val;
-    if (iss.fail()) {
+    if (iss.fail() || val < 0) {
       std::cerr << "Error" << std::endl;
       return 1;
     }
@@ -28,23 +28,32 @@ int main(int argc, char **argv) {
   }
 
   std::cout << "before:\t";
-  PmergeMe<std::vector<int> >::print(vec);
-  // timer
-  clock_t t_vec = clock();
-  // vec
-  vec = PmergeMe<std::vector<int> >::sort(vec);
-  // vec time
-  t_vec = clock() - t_vec;
-  std::cout << "after:\t";
-  PmergeMe<std::vector<int> >::print(vec);
+  PmergeMe<std::vector<int> >::print(vec, 6);
 
-  //timer
+  clock_t t_vec = clock();
+  PmergeMe<std::vector<int> >::sort(vec);
+  t_vec = clock() - t_vec;
+
   clock_t t_deq = clock();
-  // deq
   PmergeMe<std::deque<int> >::sort(deq);
-  // deq time
   t_deq = clock() - t_deq;
-  // PmergeMe::print(deq);
+
+  size_t len = vec.size();
+  if (len != deq.size()) {
+    std::cerr << "error!" << std::endl;
+    return 1;
+  }
+
+  for (size_t i = 0; i < len; ++i) {
+    if (vec.at(i) != deq.at(i)) {
+      std::cerr << "error!" << std::endl;
+      return 1;
+    }
+  }
+
+  std::cout << "after:\t";
+  PmergeMe<std::vector<int> >::print(vec, 6);
+
   std::cout << "time elapsed with std::vector: " << t_vec << std::endl;
   std::cout << "time elapsed with std::deque: " << t_deq << std::endl;
   

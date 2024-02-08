@@ -25,7 +25,7 @@ void PmergeMe<Container>::calculate_jacobsthal(int len) {
 }
 
 template <class Container>
-Container PmergeMe<Container>::sort(Container &container) {
+void PmergeMe<Container>::sort(Container &container) {
   typedef typename Container::iterator iter;
   PmergeMe<Container> pm;
   pm.calculate_jacobsthal(container.size());
@@ -41,10 +41,12 @@ Container PmergeMe<Container>::sort(Container &container) {
     pm._set.insert(make_pair(*it, *it_2));
   }
 
+  // clear the input container to use as new main chain.
+  container.clear(); 
   int id = 1;
   typedef std::set<std::pair<int, int> >::iterator siter;
   for (siter it = pm._set.begin(); it != pm._set.end(); it++) {
-    pm.main_chain.push_back(it->first);
+    container.push_back(it->first);
     pm.pending_chain.push_back(it->second);
     ++id;
   }
@@ -55,8 +57,8 @@ Container PmergeMe<Container>::sort(Container &container) {
   for (iter it = pm._jacobsthal.begin(); it != pm._jacobsthal.end(); it++) {
       // reverse from jacobsthal number to last insert
       for (int j = *it; j > id; --j) {
-        iter first = pm.main_chain.begin();
-        iter last = pm.main_chain.end();
+        iter first = container.begin();
+        iter last = container.end();
         int curr_val;
         try {
           curr_val = pm.pending_chain.at(j - 1); // start counting at 1
@@ -64,18 +66,19 @@ Container PmergeMe<Container>::sort(Container &container) {
           continue;
         }
         iter pos = std::lower_bound(first, last, curr_val);
-        pm.main_chain.insert(pos, curr_val);
+        container.insert(pos, curr_val);
       }
       id = *it;
   }
-  return pm.main_chain;
 }
 
 template <class Container>
-void PmergeMe<Container>::print(Container &container) {
-  typedef typename Container::iterator iter;
-  for (iter it = container.begin(); it != container.end(); ++it) {
-    std::cout << *it << " ";
+void PmergeMe<Container>::print(Container &container, size_t max_len) {
+  size_t len = std::min(container.size(), max_len);
+  for (size_t i = 0; i < len; i++) {
+    std::cout << container.at(i) << " ";
   }
+  if (container.size() > max_len)
+    std::cout << "[...]";
   std::cout << std::endl;
 }
