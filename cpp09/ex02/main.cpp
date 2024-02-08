@@ -30,7 +30,7 @@ int main(int argc, char **argv) {
   // timer
   clock_t t = clock();
   // vec
-  PmergeMe::sort(vec);
+  vec = PmergeMe::sort(vec);
   // vec time
   t = clock() - t;
   std::cout << "time elapsed: " << t << std::endl;
