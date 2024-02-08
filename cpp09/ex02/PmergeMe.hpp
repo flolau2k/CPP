@@ -25,7 +25,6 @@ private:
 
   Container pending_chain;
   Container _jacobsthal;
-  // std::multiset<std::pair<int, int> > _set;
 
   int _leftover;
   bool _leftover_set;
