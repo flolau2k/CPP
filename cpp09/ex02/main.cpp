@@ -27,23 +27,26 @@ int main(int argc, char **argv) {
     deq.push_back(val);
   }
 
+  std::cout << "before:\t";
+  PmergeMe<std::vector<int> >::print(vec);
   // timer
-  clock_t t = clock();
+  clock_t t_vec = clock();
   // vec
-  vec = PmergeMe::sort(vec);
+  vec = PmergeMe<std::vector<int> >::sort(vec);
   // vec time
-  t = clock() - t;
-  std::cout << "time elapsed: " << t << std::endl;
-  PmergeMe::print(vec);
+  t_vec = clock() - t_vec;
+  std::cout << "after:\t";
+  PmergeMe<std::vector<int> >::print(vec);
 
-  // timer
-  // t = clock();
-  // // deq
-  // PmergeMe::sort(deq);
-  // // deq time
-  // t = clock() - t;
-  // std::cout << "time elapsed: " << t << std::endl;
+  //timer
+  clock_t t_deq = clock();
+  // deq
+  PmergeMe<std::deque<int> >::sort(deq);
+  // deq time
+  t_deq = clock() - t_deq;
   // PmergeMe::print(deq);
+  std::cout << "time elapsed with std::vector: " << t_vec << std::endl;
+  std::cout << "time elapsed with std::deque: " << t_deq << std::endl;
   
   return 0;
 }
