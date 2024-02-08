@@ -7,14 +7,6 @@ template <class Container>
 PmergeMe<Container>::~PmergeMe() {}
 
 template <class Container>
-std::pair<int, int> PmergeMe<Container>::make_pair(int n1, int n2) {
-  if (n1 > n2)
-    return std::pair<int, int>(n1, n2);
-  else
-    return std::pair<int, int>(n2, n1);
-}
-
-template <class Container>
 void PmergeMe<Container>::calculate_jacobsthal(int len) {
   _jacobsthal.push_back(1);
   while (_jacobsthal.back() < (len / 2) + 1) {
@@ -25,50 +17,92 @@ void PmergeMe<Container>::calculate_jacobsthal(int len) {
 }
 
 template <class Container>
+void PmergeMe<Container>::swap(int &a, int &b) {
+  int val = a;
+  a = b;
+  b = val;
+}
+
+template <class Container>
+int PmergeMe<Container>::divide(Container &container, int l, int r) {
+  int i, j, pivot;
+
+  i = l;
+  j = r - 1;
+  pivot = container[r];
+  while (i < j) {
+    while (i < j && container[i] <= pivot)
+      ++i;
+    while (j > i && container[j] > pivot)
+      --j;
+    if (container[i] > container[j]){
+      swap(container[i], container[j]);
+      swap(pending_chain[i], pending_chain[j]);
+    }
+  }
+  if (container[i] > pivot) {
+    swap(container[i], container[r]);
+    swap(pending_chain[i], pending_chain[r]);
+  } else
+    i = r;
+  return i;
+}
+
+template <class Container>
+void PmergeMe<Container>::quicksort(Container &container, int l, int r) {
+  size_t pivot;
+  if (l < r) {
+    pivot = divide(container, l, r);
+    quicksort(container, l, pivot - 1);
+    quicksort(container, pivot + 1, r);
+  }
+}
+
+template <class Container>
 void PmergeMe<Container>::sort(Container &container) {
   typedef typename Container::iterator iter;
   PmergeMe<Container> pm;
   pm.calculate_jacobsthal(container.size());
 
   pm._leftover_set = false;
-  for (iter it = container.begin(); it != container.end(); it+=2) {
-    iter it_2 = it + 1;
-    if (it_2 == container.end()) {
-      pm._leftover = *it;
-      pm._leftover_set = true;
+
+  size_t curr_size = container.size();
+  for (size_t i = 0; i < curr_size; ++i) {
+    if (i + 1 >= curr_size) {
+      pm.pending_chain.push_back(container[i]);
+      container.pop_back();
       break;
     }
-    pm._set.insert(make_pair(*it, *it_2));
+    if (container[i] > container[i + 1]) {
+      pm.pending_chain.push_back(container[i + 1]);
+      container.erase(container.begin() + i + 1);
+    } else {
+      pm.pending_chain.push_back(container[i]);
+      container.erase(container.begin() + i);
+    }
+    curr_size = container.size();
   }
 
-  // clear the input container to use as new main chain.
-  container.clear(); 
-  int id = 1;
-  typedef std::set<std::pair<int, int> >::iterator siter;
-  for (siter it = pm._set.begin(); it != pm._set.end(); it++) {
-    container.push_back(it->first);
-    pm.pending_chain.push_back(it->second);
-    ++id;
-  }
-  if (pm._leftover_set) {
-    pm.pending_chain.push_back(pm._leftover);
-  }
-  id = 0;
+  // sort the main chain and mirror the movements in the pending chain
+  // use std::sort!!
+  pm.quicksort(container, 0, container.size() - 1);
+
+  int id = 0;
   for (iter it = pm._jacobsthal.begin(); it != pm._jacobsthal.end(); it++) {
-      // reverse from jacobsthal number to last insert
-      for (int j = *it; j > id; --j) {
-        iter first = container.begin();
-        iter last = container.end();
-        int curr_val;
-        try {
-          curr_val = pm.pending_chain.at(j - 1); // start counting at 1
-        } catch (const std::out_of_range &) {
-          continue;
-        }
-        iter pos = std::lower_bound(first, last, curr_val);
-        container.insert(pos, curr_val);
+    // reverse from jacobsthal number to last insert
+    for (int j = *it; j > id; --j) {
+      iter first = container.begin();
+      iter last = container.end();
+      int curr_val;
+      try {
+        curr_val = pm.pending_chain.at(j - 1); // start counting at 1
+      } catch (const std::out_of_range &) {
+        continue;
       }
-      id = *it;
+      iter pos = std::lower_bound(first, last, curr_val);
+      container.insert(pos, curr_val);
+    }
+    id = *it;
   }
 }
 
