@@ -8,16 +8,16 @@
 
 class PmergeMe {
 public:
-
   static std::pair<int, int> make_pair(int n1, int n2);
 
-  template <class IterableContainer>
-  static void sort(IterableContainer &container) {
-    typedef typename IterableContainer::iterator iter;
-    
-    // make pairs and sort them in a std::set.
-    PmergeMe pm;
+  void calculate_jacobsthal(size_t len) {
+    for (int i = 0; i <= )
+  }
 
+  static void sort(std::vector<int> &container) {
+    typedef std::vector<int>::iterator iter;
+    PmergeMe pm;
+    pm._leftover_set = false;
     for (iter it = container.begin(); it != container.end(); it+=2) {
       iter it_2 = it + 1;
       if (it_2 == container.end()) {
@@ -27,12 +27,18 @@ public:
       }
       pm._set.insert(make_pair(*it, *it_2));
     }
-    for (std::set<std::pair<int, int> >::iterator it = pm._set.begin(); it != pm._set.end(); ++it) {
-      std::cout << "current pair: " << it->first << ", " << it->second << std::endl;
+
+    int id = 1;
+    typedef std::set<std::pair<int, int> >::iterator siter;
+    for (siter it = pm._set.begin(); it != pm._set.end(); it++) {
+      pm.main_chain.push_back(std::pair<int, int>(id, it->first));
+      pm.pending_chain.push_back(std::pair<int, int>(id, it->second));
+      ++id;
     }
     if (pm._leftover_set) {
-      std::cout << "_leftover: " << pm._leftover << std::endl;
+      pm.pending_chain.push_back(std::pair<int, int>(id, pm._leftover));
     }
+
   }
 
   template <class IterableContainer>
@@ -46,6 +52,11 @@ public:
 private:
   PmergeMe();
   ~PmergeMe();
+
+  std::vector<std::pair<int, int> > main_chain;
+  std::vector<std::pair<int, int> > pending_chain;
+
+  std::vector<int> _jacobsthal;
 
   std::set<std::pair<int, int> > _set;
   int _leftover;

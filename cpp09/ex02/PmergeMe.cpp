@@ -1,10 +1,5 @@
 #include "PmergeMe.hpp"
 
-PmergeMe::PmergeMe() {
-  _leftover = 0;
-  _leftover_set = false;
-}
-
 PmergeMe::~PmergeMe() {}
 
 std::pair<int, int> PmergeMe::make_pair(int n1, int n2) {
