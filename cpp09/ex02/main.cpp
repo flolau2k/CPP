@@ -1,9 +1,8 @@
-#include <iostream>
-#include <vector>
 #include <deque>
+#include <iostream>
 #include <sstream>
 #include <time.h>
-#include <unistd.h>
+#include <vector>
 #include "PmergeMe.hpp"
 
 int main(int argc, char **argv) {
@@ -11,7 +10,7 @@ int main(int argc, char **argv) {
     std::cerr << "Error: No Args given!" << std::endl;
     return 1;
   }
-  
+
   std::vector<int> vec;
   std::deque<int> deq;
 
@@ -54,8 +53,14 @@ int main(int argc, char **argv) {
   std::cout << "after:\t";
   PmergeMe<std::vector<int> >::print(vec, 10);
 
-  std::cout << "time elapsed with std::vector: " << t_vec << std::endl;
-  std::cout << "time elapsed with std::deque: " << t_deq << std::endl;
-  
+  // time as double type in the unit of [us]
+  double time_vec = (static_cast<double>(t_vec) / CLOCKS_PER_SEC) * 1000000;
+  double time_deq = (static_cast<double>(t_deq) / CLOCKS_PER_SEC) * 1000000;
+
+  std::cout << "time to process a range of " << len
+            << " elements with std::vector: " << time_vec << " us" << std::endl;
+  std::cout << "time to process a range of " << len
+            << " elements with std::deque: " << time_deq << " us" << std::endl;
+
   return 0;
 }

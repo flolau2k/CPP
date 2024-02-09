@@ -1,3 +1,4 @@
+#include <cmath>
 #include "PmergeMe.hpp"
 
 template <class Container>

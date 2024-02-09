@@ -1,13 +1,6 @@
 #ifndef PMERGEME_HPP
 #define PMERGEME_HPP
 
-#include <algorithm>
-#include <iostream>
-#include <set>
-#include <utility>
-#include <vector>
-#include <cmath>
-
 template <class Container>
 class PmergeMe {
 public:
