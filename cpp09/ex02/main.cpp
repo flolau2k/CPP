@@ -28,7 +28,7 @@ int main(int argc, char **argv) {
   }
 
   std::cout << "before:\t";
-  PmergeMe<std::vector<int> >::print(vec, 6);
+  PmergeMe<std::vector<int> >::print(vec, 10);
 
   clock_t t_vec = clock();
   PmergeMe<std::vector<int> >::sort(vec);
@@ -52,7 +52,7 @@ int main(int argc, char **argv) {
   }
 
   std::cout << "after:\t";
-  PmergeMe<std::vector<int> >::print(vec, 6);
+  PmergeMe<std::vector<int> >::print(vec, 10);
 
   std::cout << "time elapsed with std::vector: " << t_vec << std::endl;
   std::cout << "time elapsed with std::deque: " << t_deq << std::endl;

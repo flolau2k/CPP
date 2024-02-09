@@ -63,9 +63,7 @@ void PmergeMe<Container>::sort(Container &container) {
   typedef typename Container::iterator iter;
   PmergeMe<Container> pm;
   pm.calculate_jacobsthal(container.size());
-
   pm._leftover_set = false;
-
   size_t curr_size = container.size();
   for (size_t i = 0; i < curr_size; ++i) {
     if (i + 1 >= curr_size) {
@@ -84,7 +82,6 @@ void PmergeMe<Container>::sort(Container &container) {
   }
 
   // sort the main chain and mirror the movements in the pending chain
-  // use std::sort!!
   pm.quicksort(container, 0, container.size() - 1);
 
   int id = 0;
